@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "533821781686",
+    "firebase_url": "https://musicbeat-6ac9b.firebaseio.com",
+    "project_id": "musicbeat-6ac9b",
+    "storage_bucket": "musicbeat-6ac9b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533821781686:android:25c68a81c3895b98",
+        "android_client_info": {
+          "package_name": "com.techweblearn.musicbeat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533821781686-2tuj3eklrluip4f8ahhf33opou6ldujo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techweblearn.musicbeat",
+            "certificate_hash": "a9ca6ada93d9267b7e1d300a895ee2086791058a"
+          }
+        },
+        {
+          "client_id": "533821781686-hcotki9e9gs86qvru8tf7oc4d7av2f54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd_oCYVwDVbAWr5RdhEkQ7r8aMqBwc2ag"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533821781686-hcotki9e9gs86qvru8tf7oc4d7av2f54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

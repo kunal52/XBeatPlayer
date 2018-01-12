@@ -1,0 +1,85 @@
+<!--
+  ~ Copyright 2017 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+
+
+
+
+
+
+
+    <attr name="search_text_drawable" format="reference"/>
+    <attr name="ic_home" format="reference"/>
+    <attr name="ic_library" format="reference"/>
+    <attr name="ic_setting" format="reference"/>
+    <attr name="ic_about" format="reference"/>
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+
+        <item name="android:windowAnimationStyle">@null</item>
+
+        <item name="android:textColorPrimary">@color/primaryTextColorLight</item>
+        <item name="android:textColorSecondary">@color/secondaryTextColorLight</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="search_text_drawable">@drawable/search_edittext_drawable</item>
+        <item name="ic_home">@drawable/ic_home_black_24dp</item>
+
+    </style>
+
+    <style name="AppDarkTheme" parent="Theme.AppCompat.NoActionBar" >
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:textColorPrimary">@color/primaryTextColorDark</item>
+        <item name="android:textColorSecondary">@color/secondaryTextColorDark</item>
+        <item name="colorPrimary">@color/primaryDark</item>
+        <item name="colorPrimaryDark">@color/secondaryDark</item>
+        <item name="colorAccent">@color/accentDark</item>
+        <item name="android:colorForeground">@color/foreground_material_dark</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="search_text_drawable">@drawable/search_edittext_drawable_dark</item>
+        <item name="ic_home">@drawable/ic_home_white_24dp</item>
+    </style>
+
+    <style name="Wooden" parent="Theme.AppCompat.NoActionBar" >
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:textColorPrimary">@color/primaryTextColorDark</item>
+        <item name="android:textColorSecondary">@color/secondaryTextColorDark</item>
+        <item name="colorPrimary">@color/primaryDark</item>
+        <item name="colorPrimaryDark">@color/secondaryDark</item>
+        <item name="colorAccent">@color/accentDark</item>
+        <item name="android:colorForeground">@color/foreground_material_dark</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="search_text_drawable">@drawable/search_edittext_drawable_dark</item>
+        <item name="ic_home">@drawable/ic_home_white_24dp</item>
+    </style>
+
+
+    <style name="SettingsTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/primaryTextColorLight</item>
+    </style>
+</resources>

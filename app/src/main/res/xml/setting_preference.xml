@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference android:title="Start Screen"
+        android:key="start_screen"
+        android:defaultValue="2"
+        android:entries="@array/start_screen_entries"
+        android:entryValues="@array/start_screen_value"
+        android:summary="%s"/>
+
+    <PreferenceCategory
+        android:title="PlayBack">
+
+        <CheckBoxPreference
+            android:title="Pause Music on Headset Unplug"
+            android:key="pause_music_on_headset_unplug"
+            android:defaultValue="true"/>
+
+        <CheckBoxPreference android:title="Pause Music on Call"
+            android:key="pause_music_on_call"
+            android:defaultValue="true"/>
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Apperence">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="dark_theme"
+            android:title="Dark Theme" />
+
+
+        <ListPreference android:title="Recently Added Interval"
+            android:key="recently_added_interval"
+            android:entries="@array/recently_added_entries"
+            android:entryValues="@array/recently_added_value"
+            android:defaultValue="90"
+            android:summary="%s"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Animations">
+
+
+        <ListPreference android:title="Song Change Effect In Player"
+            android:key="playerlayout_viewpager_transformation"
+            android:entries="@array/playerlayout_viewpaer_transformation_entries"
+            android:entryValues="@array/playerlayout_viewpaer_transformation_values"
+            android:defaultValue="0"
+            android:summary="%s"/>
+
+
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>

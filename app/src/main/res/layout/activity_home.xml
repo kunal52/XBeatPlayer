@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/slinding_up_layout"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    android:gravity="bottom"
+    sothree:umanoPanelHeight="48dp"
+    sothree:umanoOverlay="true"
+    tools:context="com.techweblearn.musicbeat.HomeActivity">
+
+    <include layout="@layout/content_layout" />
+    <include layout="@layout/player_layout"/>
+
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

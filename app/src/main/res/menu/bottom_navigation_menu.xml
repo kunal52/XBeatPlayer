@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:icon="@drawable/ic_stat_image_audiotrack"
+        android:id="@+id/songs"
+        android:title="@string/songs" />
+
+
+    <item
+        android:icon="@drawable/ic_album_black_24dp"
+        android:id="@+id/albums"
+        android:title="@string/albums" />
+
+    <item
+        android:icon="@drawable/ic_artist_black_24dp"
+        android:id="@+id/artists"
+        android:title="@string/artists" />
+
+</menu>

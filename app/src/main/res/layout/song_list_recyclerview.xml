@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_alignParentStart="true"
+        app:cardElevation="2dp">
+
+        <ImageView
+            android:id="@+id/song_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.support.v7.widget.CardView>
+
+
+    <ImageView
+        android:layout_centerVertical="true"
+        android:id="@+id/more_options"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_more_vert_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
+
+    <TextView
+        android:textColor="?android:textColorSecondary"
+        android:fontFamily="@font/open_sans"
+        android:visibility="gone"
+        android:layout_marginStart="16dp"
+        android:textSize="15sp"
+        android:id="@+id/song_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/more_options"
+        android:layout_centerVertical="true" />
+
+
+    <TextView
+        android:fontFamily="@font/open_sans"
+        android:textStyle="bold"
+        android:layout_marginTop="3dp"
+        android:paddingStart="16dp"
+        android:id="@+id/song_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/artist_name"
+        android:layout_toStartOf="@+id/song_time"
+        android:maxLines="1"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="13sp"
+        tools:ignore="RtlSymmetry" />
+
+
+    <TextView
+        android:textColor="?android:textColorSecondary"
+        android:fontFamily="@font/open_sans"
+        android:paddingStart="16dp"
+        android:id="@+id/artist_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/song_name"
+        android:layout_toEndOf="@+id/cardView"
+        android:layout_toStartOf="@+id/song_time"
+        android:maxLines="1"
+        android:textSize="13sp" />
+
+
+</RelativeLayout>

@@ -1,0 +1,141 @@
+<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sliding_up_panel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:gravity="bottom"
+    sothree:umanoDragView="@id/drag_position"
+    sothree:umanoShadowHeight="0dp"
+    android:layout_marginBottom="48dp"
+    sothree:umanoParallaxOffset="60dp"
+    sothree:umanoScrollableView="@+id/artist_songs"
+    tools:context="com.techweblearn.musicbeat.Fragment.ArtistFragmentFullView">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/artist_art"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_artist_black"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_left_chevron" />
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/drag_position"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:animateLayoutChanges="true"
+        android:background="?attr/colorPrimary"
+        android:orientation="vertical"
+        android:paddingLeft="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/back_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_left_chevron"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/artist_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_weight="6"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:focusable="false"
+                android:fontFamily="@font/open_sans_bold"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:id="@+id/play_all"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_play_button" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/artist_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:maxLines="3"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/albums"
+            android:textColor="?android:textColorSecondary"
+            android:textSize="20sp" />
+
+        <android.support.v7.widget.RecyclerView
+
+            android:id="@+id/artist_albums"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/songs"
+            android:textColor="?android:textColorSecondary"
+            android:textSize="20sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/artist_songs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

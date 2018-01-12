@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="8dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp">
+
+
+    <ImageView
+        android:id="@+id/drag_position"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true" />
+
+
+    <TextView
+        android:textColor="?android:textColorSecondary"
+        android:textSize="13sp"
+        android:id="@+id/total_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true" />
+
+
+    <TextView
+
+        android:paddingEnd="4dp"
+        android:id="@+id/song_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="14dp"
+        android:layout_toEndOf="@+id/drag_position"
+        android:layout_toStartOf="@+id/total_time"
+        android:maxLines="1"
+        android:paddingStart="4dp"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="13sp" />
+
+
+    <TextView
+        android:textColor="?android:textColorSecondary"
+        android:paddingEnd="4dp"
+        android:id="@+id/artist_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/song_name"
+        android:layout_below="@+id/song_name"
+        android:layout_toStartOf="@+id/total_time"
+        android:maxLines="1"
+        android:paddingStart="4dp"
+        android:textSize="12sp" />
+
+
+</RelativeLayout>

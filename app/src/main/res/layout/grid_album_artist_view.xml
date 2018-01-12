@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:padding="8dp"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.CardView
+        card_view:cardUseCompatPadding="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardElevation="16dp"
+        card_view:cardCornerRadius="32dp">
+
+        <ImageView
+            android:src="@drawable/album_jazz_blues"
+            android:id="@+id/image_background"
+            android:layout_width="match_parent"
+            android:layout_height="180dp" />
+
+    </android.support.v7.widget.CardView>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="4dp" />
+
+    <TextView
+        android:fontFamily="@font/open_sans_semibold"
+        android:id="@+id/primary_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textAlignment="center"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="2dp" />
+
+    <TextView
+        android:textColor="?android:textColorSecondary"
+        android:fontFamily="@font/open_sans"
+        android:maxLines="1"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:id="@+id/secondry_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
