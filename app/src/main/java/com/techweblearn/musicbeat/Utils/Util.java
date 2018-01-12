@@ -154,7 +154,7 @@ public class Util {
     public static int getTheme(Context context)
     {
 
-        switch (PreferenceManager.getDefaultSharedPreferences(context).getInt("theme",0))
+        switch (Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context).getString("theme","0")))
         {
             case 0:return R.style.AppTheme;
             case 1:return R.style.AppDarkTheme;

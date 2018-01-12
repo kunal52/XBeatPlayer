@@ -1,6 +1,5 @@
 package com.techweblearn.musicbeat;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,6 +22,7 @@ import com.techweblearn.musicbeat.Utils.Util;
 public class SettingActivity extends AppCompatActivity {
 
 
+    static boolean  prevTheme=false;
     int prevRecentlyAddedInterval=0;
     int prevplayerLayoutViewPagerAnimationSelected=0;
     @Override
@@ -44,7 +44,12 @@ public class SettingActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         Intent i = new Intent();
-        i.putExtra("dark_theme", PreferenceManager.getDefaultSharedPreferences(this).getBoolean("dark_theme",false));
+        if(prevTheme)
+        {
+            i.putExtra("is_theme_change",true );
+        }
+
+
         if(prevRecentlyAddedInterval!=Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(this).getString("recently_added_interval","1")))
             i.putExtra("recently_added_interval",true);
         else  i.putExtra("recently_added_interval",false);
@@ -99,8 +104,9 @@ public class SettingActivity extends AppCompatActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
-            if(key.equals("dark_theme"))
+            if(key.equals("theme"))
             {
+                prevTheme=true;
                 getActivity().recreate();
 
             }

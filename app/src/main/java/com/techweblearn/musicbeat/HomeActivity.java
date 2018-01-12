@@ -374,7 +374,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 20) {
             if (resultCode == RESULT_OK) {
-                if (data.getBooleanExtra("dark_theme", false) != isDarkTheme) {
+                if (data.getBooleanExtra("is_theme_change", false)) {
                     recreate();
                 }
             }

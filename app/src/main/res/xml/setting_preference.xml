@@ -1,56 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ListPreference android:title="Start Screen"
-        android:key="start_screen"
+    <ListPreference
         android:defaultValue="2"
         android:entries="@array/start_screen_entries"
         android:entryValues="@array/start_screen_value"
-        android:summary="%s"/>
+        android:key="start_screen"
+        android:summary="%s"
+        android:title="Start Screen" />
 
-    <PreferenceCategory
-        android:title="PlayBack">
+    <PreferenceCategory android:title="PlayBack">
 
         <CheckBoxPreference
-            android:title="Pause Music on Headset Unplug"
+            android:defaultValue="true"
             android:key="pause_music_on_headset_unplug"
-            android:defaultValue="true"/>
+            android:title="Pause Music on Headset Unplug" />
 
-        <CheckBoxPreference android:title="Pause Music on Call"
+        <CheckBoxPreference
+            android:defaultValue="true"
             android:key="pause_music_on_call"
-            android:defaultValue="true"/>
+            android:title="Pause Music on Call" />
 
     </PreferenceCategory>
-    <PreferenceCategory android:title="Apperence">
+    <PreferenceCategory
+        android:summary="Changes The Look And Feel Of Your App"
+        android:title="Appearance">
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="dark_theme"
-            android:title="Dark Theme" />
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/theme_entries"
+            android:entryValues="@array/theme_values"
+            android:key="theme"
+            android:summary="%s"
+            android:title="Theme" />
 
-
-        <ListPreference android:title="Recently Added Interval"
-            android:key="recently_added_interval"
+        <ListPreference
+            android:defaultValue="90"
             android:entries="@array/recently_added_entries"
             android:entryValues="@array/recently_added_value"
-            android:defaultValue="90"
-            android:summary="%s"/>
+            android:key="recently_added_interval"
+            android:summary="%s"
+            android:title="Recently Added Interval" />
 
     </PreferenceCategory>
 
     <PreferenceCategory android:title="Animations">
 
 
-        <ListPreference android:title="Song Change Effect In Player"
-            android:key="playerlayout_viewpager_transformation"
+        <ListPreference
+            android:defaultValue="0"
             android:entries="@array/playerlayout_viewpaer_transformation_entries"
             android:entryValues="@array/playerlayout_viewpaer_transformation_values"
-            android:defaultValue="0"
-            android:summary="%s"/>
+            android:key="playerlayout_viewpager_transformation"
+            android:summary="%s"
+            android:title="Song Change Effect In Player" />
 
 
     </PreferenceCategory>
-
 
 
 </PreferenceScreen>
