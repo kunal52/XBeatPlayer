@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ Copyright 2017 The Android Open Source Project
   ~
@@ -28,13 +29,22 @@
 
 
     //Dark Color Theme
-
     <color name="primaryDark">#212121</color>
     <color name="secondaryDark">#000000</color>
     <color name="accentDark">#8d8d8d</color>
     <color name="primaryTextColorDark">#fcfcfc</color>
     <color name="secondaryTextColorDark">#8d8d8d</color>
 
+
+
+
+    //Wooden Colour Theme
+
+    <color name="primaryDarkWood">#382820</color>
+    <color name="secondaryDarkWood">#5c4636</color>
+    <color name="accentWood">#e0b888</color>
+    <color name="primaryTextColorWood">#e4bb8a</color>
+    <color name="secondaryTextColorWood">#caa271</color>
 
 
     <color name="notification_bg">#e91e63</color>

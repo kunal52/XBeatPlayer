@@ -6,9 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.support.annotation.NonNull;
@@ -43,7 +41,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 
 import static com.techweblearn.musicbeat.Utils.Constants.ADD_ALL_SONGS_TO_QUEUE;
 import static com.techweblearn.musicbeat.Utils.Constants.ADD_SONG_LIST_TO_QUEUE;
@@ -111,7 +108,7 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
     @Override
     public void onTaskRemoved(Intent rootIntent) {
         super.onTaskRemoved(rootIntent);
-         stopSelf();
+        stopSelf();
     }
 
 
@@ -126,7 +123,7 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
         mMediaNotificationManager.onDestroy();
         mPlayback.stop();
         mSession.release();
-        if(wakeLock.isHeld())
+        if (wakeLock.isHeld())
             wakeLock.release();
         Log.d(TAG, "onDestroy: MediaPlayerAdapter stopped, and MediaSession released");
     }
@@ -145,9 +142,9 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
         List<MediaBrowserCompat.MediaItem> mediaItems = getAllMediaItemsFromQueue(getApplicationContext(), MusicPlaybackQueueStore.getInstance(getApplicationContext()).getSavedOriginalPlayingQueue());
         result.sendResult(mediaItems);
         originalQueue.clear();
-            for (MediaBrowserCompat.MediaItem mediaItem : mediaItems) {
-                originalQueue.add(new MediaSessionCompat.QueueItem(mediaItem.getDescription(), mediaItem.getDescription().hashCode()));
-            }
+        for (MediaBrowserCompat.MediaItem mediaItem : mediaItems) {
+            originalQueue.add(new MediaSessionCompat.QueueItem(mediaItem.getDescription(), mediaItem.getDescription().hashCode()));
+        }
 
     }
 
@@ -161,10 +158,33 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
 
     }
 
+    public static class SleepTimer extends BroadcastReceiver {
+
+
+        MediaBrowserAdapter mediaBrowserAdapter;
+
+        public SleepTimer() {
+
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Toast.makeText(context, "Sleep Timer", Toast.LENGTH_SHORT).show();
+            mediaBrowserAdapter = new MediaBrowserAdapter(context.getApplicationContext());
+
+            mediaBrowserAdapter.addListener(new MediaBrowserAdapter.MediaBrowserChangeListener() {
+                @Override
+                public void onConnected(@Nullable MediaControllerCompat mediaController) {
+                    mediaController.getTransportControls().pause();
+                }
+            });
+            mediaBrowserAdapter.onStart();
+        }
+    }
+
     public class MediaSessionCallback extends MediaSessionCompat.Callback {
 
         private MediaDescriptionCompat mPreparedMedia;
-
 
 
         @Override
@@ -190,7 +210,7 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
             if (index < mQueueIndex) {
                 mQueueIndex--;
                 Extras.saveCurrentSongIndex(getApplicationContext(), mQueueIndex);
-            } else  {
+            } else {
                 mPreparedMedia = null;
                 onPlay();
             }
@@ -221,9 +241,8 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
                     break;
                 case ADD_SONG_LIST_TO_QUEUE:
                     extras.setClassLoader(Playlist.class.getClassLoader());
-                    ArrayList<Song>song_list=extras.getParcelableArrayList("song_list");
-                    for(MediaSessionCompat.QueueItem queueItem:MediaItems.getAllQueueItemFromSongList(getApplicationContext(),song_list))
-                    {
+                    ArrayList<Song> song_list = extras.getParcelableArrayList("song_list");
+                    for (MediaSessionCompat.QueueItem queueItem : MediaItems.getAllQueueItemFromSongList(getApplicationContext(), song_list)) {
                         originalQueue.add(queueItem);
                     }
                     mSession.setQueue(originalQueue);
@@ -231,19 +250,17 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
                     break;
 
                 case PLAY_SONGLIST:
-                    mQueueIndex=0;
+                    mQueueIndex = 0;
                     extras.setClassLoader(Playlist.class.getClassLoader());
-                    ArrayList<Song>song_list1=extras.getParcelableArrayList("song_list");
+                    ArrayList<Song> song_list1 = extras.getParcelableArrayList("song_list");
                     originalQueue.clear();
-                    for(MediaSessionCompat.QueueItem queueItem:MediaItems.getAllQueueItemFromSongList(getApplicationContext(),song_list1))
-                    {
+                    for (MediaSessionCompat.QueueItem queueItem : MediaItems.getAllQueueItemFromSongList(getApplicationContext(), song_list1)) {
                         originalQueue.add(queueItem);
                     }
                     mSession.setQueue(originalQueue);
 
                     musicPlaybackQueueStore.new SaveOriginalQueueAsyncTask(getApplicationContext()).execute(originalQueue);
-                    if(originalQueue.size()>0)
-                    {
+                    if (originalQueue.size() > 0) {
                         onPlay();
                     }
                     break;
@@ -251,8 +268,7 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
                 case ADD_ALL_SONGS_TO_QUEUE:
                     int playing_index = extras.getInt("position");
 
-                    if(originalQueue.size()==SongLoader.getAllSongs(getApplicationContext()).size())
-                    {
+                    if (originalQueue.size() == SongLoader.getAllSongs(getApplicationContext()).size()) {
                         mCallback.onSkipToQueueItem(playing_index);
                         return;
                     }
@@ -274,8 +290,8 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
                     break;
                 case PLAY_ARTIST:
                     originalQueue.clear();
-                    originalQueue.addAll(MediaItems.getAllQueueItemFromSongList(getApplicationContext(),ArtistLoader.getArtist(getApplicationContext(),extras.getInt("artist_id")).getSongs()));
-                    mQueueIndex=0;
+                    originalQueue.addAll(MediaItems.getAllQueueItemFromSongList(getApplicationContext(), ArtistLoader.getArtist(getApplicationContext(), extras.getInt("artist_id")).getSongs()));
+                    mQueueIndex = 0;
                     mSession.setQueue(originalQueue);
                     mPreparedMedia = null;
                     onPlay();
@@ -283,8 +299,8 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
                     break;
                 case PLAY_ALBUM:
                     originalQueue.clear();
-                    originalQueue.addAll(MediaItems.getAllQueueItemFromSongList(getApplicationContext(),AlbumLoader.getAlbum(getApplicationContext(),extras.getInt("album_id")).songs));
-                    mQueueIndex=0;
+                    originalQueue.addAll(MediaItems.getAllQueueItemFromSongList(getApplicationContext(), AlbumLoader.getAlbum(getApplicationContext(), extras.getInt("album_id")).songs));
+                    mQueueIndex = 0;
                     mSession.setQueue(originalQueue);
                     mPreparedMedia = null;
                     onPlay();
@@ -299,19 +315,14 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
             if (index < 0) {
                 originalQueue.add(mQueueIndex + 1, MediaItems.queueItemFromMediaId(getApplicationContext(), mediaId));
             } else {
-                if(index<mQueueIndex)
-                {
+                if (index < mQueueIndex) {
                     mQueueIndex--;
-                    Extras.saveCurrentSongIndex(getApplicationContext(),mQueueIndex);
+                    Extras.saveCurrentSongIndex(getApplicationContext(), mQueueIndex);
                     MediaSessionCompat.QueueItem queueItem = originalQueue.remove(index);
                     originalQueue.add(mQueueIndex + 1, queueItem);
-                }
-                else if (index==mQueueIndex)
-                {
-                    Toast.makeText(getApplicationContext(),"Already Playing",Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
+                } else if (index == mQueueIndex) {
+                    Toast.makeText(getApplicationContext(), "Already Playing", Toast.LENGTH_SHORT).show();
+                } else {
                     MediaSessionCompat.QueueItem queueItem = originalQueue.remove(index);
                     originalQueue.add(mQueueIndex + 1, queueItem);
                 }
@@ -325,7 +336,7 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
 
         //Check Song is Already in List Then Return index else return any negative value
         private int isAlreadyInList(String media_id) {
-            for (int i = 0; i < originalQueue.size() ; i++) {
+            for (int i = 0; i < originalQueue.size(); i++) {
                 if (media_id.equals(originalQueue.get(i).getDescription().getMediaId())) {
                     return i;
                 }
@@ -409,7 +420,8 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
                 mQueueIndex = (++mQueueIndex % originalQueue.size());
                 mPreparedMedia = null;
                 onPlay();
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
         }
 
         @Override
@@ -429,7 +441,9 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
                 mQueueIndex = mQueueIndex > 0 ? mQueueIndex - 1 : originalQueue.size() - 1;
                 mPreparedMedia = null;
                 onPlay();
-            }catch (Exception e){}
+            } catch (Exception e) {
+
+            }
         }
 
         @Override
@@ -453,35 +467,35 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
 
             final MediaMetadataCompat mediaMetadataCompat = MediaItems.getMediaMetaDataFromMediaId(getApplicationContext(), metadataCompat.getMediaId());
             final MediaMetadataCompat.Builder builder = new MediaMetadataCompat.Builder(mediaMetadataCompat);
-                GlideApp.with(getApplicationContext())
-                        .asBitmap()
-                        .override(300,300)
-                        .load(new AudioFileCover(mediaMetadataCompat.getString(MediaMetadataCompat.METADATA_KEY_ART_URI)))
-                        .into(new SimpleTarget<Bitmap>() {
-                            @Override
-                            public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
-                                builder.putBitmap(MediaMetadataCompat.METADATA_KEY_ART, resource);
+            GlideApp.with(getApplicationContext())
+                    .asBitmap()
+                    .override(300, 300)
+                    .load(new AudioFileCover(mediaMetadataCompat.getString(MediaMetadataCompat.METADATA_KEY_ART_URI)))
+                    .into(new SimpleTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+                            builder.putBitmap(MediaMetadataCompat.METADATA_KEY_ART, resource);
 
-                                MediaMetadataCompat mediaMetadataCompat1=builder.build();
+                            MediaMetadataCompat mediaMetadataCompat1 = builder.build();
 
-                                mSession.setMetadata(mediaMetadataCompat1);
-                                mPreparedMedia=mediaMetadataCompat1.getDescription();
-                                mPlayback.playFromMedia(mPreparedMedia);
-                            }
+                            mSession.setMetadata(mediaMetadataCompat1);
+                            mPreparedMedia = mediaMetadataCompat1.getDescription();
+                            mPlayback.playFromMedia(mPreparedMedia);
+                        }
 
-                            @Override
-                            public void onLoadFailed(@Nullable Drawable errorDrawable) {
-                                mSession.setMetadata(builder.build());
-                                mPlayback.playFromMedia(mPreparedMedia);
-                            }
-                        });
+                        @Override
+                        public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                            mSession.setMetadata(builder.build());
+                            mPlayback.playFromMedia(mPreparedMedia);
+                        }
+                    });
         }
 
         public void shuffelPlayingQueue(int mode) {
             if (PlaybackStateCompat.SHUFFLE_MODE_NONE == mode) {
                 MediaSessionCompat.QueueItem queueItem = null;
 
-                if(mQueueIndex<originalQueue.size()) {
+                if (mQueueIndex < originalQueue.size()) {
                     queueItem = originalQueue.remove(mQueueIndex);
                     Collections.sort(originalQueue, new Comparator<MediaSessionCompat.QueueItem>() {
                         @Override
@@ -505,7 +519,6 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
 
     // MediaPlayerAdapter Callback: MediaPlayerAdapter state -> MusicService.
     public class MediaPlayerListener extends PlaybackInfoListener {
-
 
         MediaPlayerListener() {
             mServiceManager = new ServiceManager();
@@ -532,12 +545,9 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
         }
 
 
-
-
-
         @Override
         public void onPlaybackStateChange(PlaybackStateCompat state) {
-            // Report the state to the MediaSession.
+
             mSession.setPlaybackState(state);
             // Manage the started state of this service.
             switch (state.getState()) {
@@ -582,43 +592,13 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
             }
 
             private void moveServiceOutOfStartedState(PlaybackStateCompat state) {
-                if(wakeLock.isHeld())
+                if (wakeLock.isHeld())
                     wakeLock.release();
                 stopForeground(true);
                 mServiceInStartedState = false;
             }
         }
-
-
-
-
     }
-
-
-    public static class SleepTimer extends BroadcastReceiver
-    {
-
-
-        MediaBrowserAdapter mediaBrowserAdapter;
-        public SleepTimer() {
-
-        }
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Toast.makeText(context,"Sleep Timer",Toast.LENGTH_SHORT).show();
-            mediaBrowserAdapter=new MediaBrowserAdapter(context.getApplicationContext());
-
-            mediaBrowserAdapter.addListener(new MediaBrowserAdapter.MediaBrowserChangeListener() {
-                @Override
-                public void onConnected(@Nullable MediaControllerCompat mediaController) {
-                    mediaController.getTransportControls().pause();
-                }
-            });
-            mediaBrowserAdapter.onStart();
-        }
-    }
-
 
 
 }

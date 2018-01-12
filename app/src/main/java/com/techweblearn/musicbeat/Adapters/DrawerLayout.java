@@ -1,7 +1,7 @@
 package com.techweblearn.musicbeat.Adapters;
 
-import android.app.FragmentTransaction;
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,10 +24,11 @@ public class DrawerLayout extends RecyclerView.Adapter<DrawerLayout.ViewHolder> 
     Context context;
     Drawable[]item_drawable;
     String[]item_name;
+    OnCallBack callBack;
+
     public DrawerLayout(Context context) {
         this.context=context;
         item_name=new String[4];
-
         item_drawable=new Drawable[4];
 
         Log.d("Theme", String.valueOf(Util.getThemePrimaryColor(context)));
@@ -36,18 +37,16 @@ public class DrawerLayout extends RecyclerView.Adapter<DrawerLayout.ViewHolder> 
         item_name[2]="Setting";
         item_name[3]="About";
 
-        if(Util.getThemePrimaryColor(context)==-328966) {
-            item_drawable[0] = context.getResources().getDrawable(R.drawable.ic_home_black_24dp);
-            item_drawable[1] = context.getResources().getDrawable(R.drawable.ic_library_music_black_24dp);
-            item_drawable[2] = context.getResources().getDrawable(R.drawable.ic_settings_black_24dp);
-            item_drawable[3] = context.getResources().getDrawable(R.drawable.ic_help_black_24dp);
-        }else
-        {
-            item_drawable[0] = context.getResources().getDrawable(R.drawable.ic_home_white_24dp);
-            item_drawable[1] = context.getResources().getDrawable(R.drawable.ic_library_music_white_24dp);
-            item_drawable[2] = context.getResources().getDrawable(R.drawable.ic_settings_white_24dp);
-            item_drawable[3] = context.getResources().getDrawable(R.drawable.ic_help_white_24dp);
-        }
+        int color=Util.getThemeAccentColor(context);
+
+        item_drawable[0] = context.getResources().getDrawable(R.drawable.ic_home_black_24dp);
+        item_drawable[0].setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        item_drawable[1] = context.getResources().getDrawable(R.drawable.ic_library_music_black_24dp);
+        item_drawable[1].setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        item_drawable[2] = context.getResources().getDrawable(R.drawable.ic_settings_black_24dp);
+        item_drawable[2].setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        item_drawable[3] = context.getResources().getDrawable(R.drawable.ic_help_black_24dp);
+        item_drawable[3].setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
 
     }
 
@@ -70,6 +69,15 @@ public class DrawerLayout extends RecyclerView.Adapter<DrawerLayout.ViewHolder> 
         return 3;
     }
 
+    public void setOnItemClicked(OnCallBack callBack)
+    {
+        this.callBack=callBack;
+    }
+    public interface OnCallBack
+    {
+         void onItemClicked(int position);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         ImageView icon;
@@ -84,17 +92,5 @@ public class DrawerLayout extends RecyclerView.Adapter<DrawerLayout.ViewHolder> 
                 }
             });
         }
-    }
-
-
-    OnCallBack callBack;
-    public void setOnItemClicked(OnCallBack callBack)
-    {
-        this.callBack=callBack;
-    }
-
-    public interface OnCallBack
-    {
-         void onItemClicked(int position);
     }
 }

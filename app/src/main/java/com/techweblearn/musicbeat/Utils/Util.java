@@ -3,7 +3,9 @@ package com.techweblearn.musicbeat.Utils;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.preference.PreferenceManager;
@@ -132,36 +134,53 @@ public class Util {
             case 2:return context.getResources().getDrawable(R.drawable.gradient_2);
             case 3:return context.getResources().getDrawable(R.drawable.gradient_3);
             default:return context.getResources().getDrawable(R.drawable.gradient_0);
-
         }
     }
 
     public static Drawable getSongDrawable(Context context)
     {
-        return context.getResources().getDrawable(R.drawable.ic_song_disc);
+        Drawable drawable=context.getResources().getDrawable(R.drawable.ic_song_disc);
+        drawable.setColorFilter(getThemeAccentColor(context), PorterDuff.Mode.SRC_ATOP);
+        return drawable;
     }
 
     public static Drawable getArtistDrawable(Context context)
     {
-        return context.getResources().getDrawable(R.drawable.ic_artist_black);
+        Drawable drawable= context.getResources().getDrawable(R.drawable.ic_artist_black);
+        drawable.setColorFilter(getThemeAccentColor(context), PorterDuff.Mode.SRC_ATOP);
+        return drawable;
     }
 
     public static int getTheme(Context context)
     {
-        if(PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dark_theme",false))
-            return R.style.AppDarkTheme;
-        else return R.style.AppTheme;
-    }
 
+        switch (PreferenceManager.getDefaultSharedPreferences(context).getInt("theme",0))
+        {
+            case 0:return R.style.AppTheme;
+            case 1:return R.style.AppDarkTheme;
+            case 2:return R.style.Chocolate;
+            default: return R.style.AppTheme;
+
+        }
+    }
 
     public static int getThemeAccentColor (final Context context) {
         final TypedValue value = new TypedValue();
         context.getTheme ().resolveAttribute (R.attr.colorAccent, value, true);
         return value.data;
     }
+
     public static int getThemePrimaryColor (final Context context) {
         final TypedValue value = new TypedValue ();
         context.getTheme ().resolveAttribute (R.attr.colorPrimary, value, true);
+        return value.data;
+    }
+
+
+    public static int getThemeBackgroundColor(final Context context)
+    {
+        final TypedValue value = new TypedValue ();
+        context.getTheme ().resolveAttribute (R.attr.background, value, true);
         return value.data;
     }
 
@@ -169,6 +188,13 @@ public class Util {
         final TypedValue value = new TypedValue ();
         context.getTheme ().resolveAttribute (R.attr.ic_home, value, true);
         return value.data;
+    }
+
+    public static int lighter(int color, float factor) {
+        int red = (int) ((Color.red(color) * (1 - factor) / 255 + factor) * 255);
+        int green = (int) ((Color.green(color) * (1 - factor) / 255 + factor) * 255);
+        int blue = (int) ((Color.blue(color) * (1 - factor) / 255 + factor) * 255);
+        return Color.argb(Color.alpha(color), red, green, blue);
     }
 
 }

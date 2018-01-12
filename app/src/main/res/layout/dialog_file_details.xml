@@ -4,8 +4,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:ignore="NewApi,RtlSymmetry"
-    android:padding="24dp">
+    android:padding="24dp"
+    tools:ignore="NewApi,RtlSymmetry">
 
     <TextView
         android:id="@+id/file_path"
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="?android:textColorPrimary"
         android:textSize="16sp" />
 
     <TextView
@@ -22,6 +23,7 @@
         android:fontFamily="sans-serif"
         android:paddingTop="16dp"
         android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="?android:textColorPrimary"
         android:textSize="16sp" />
 
     <TextView
@@ -31,6 +33,7 @@
         android:fontFamily="sans-serif"
         android:paddingTop="16dp"
         android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="?android:textColorPrimary"
         android:textSize="16sp" />
 
     <TextView
@@ -40,6 +43,7 @@
         android:fontFamily="sans-serif"
         android:paddingTop="16dp"
         android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="?android:textColorPrimary"
         android:textSize="16sp" />
 
     <TextView
@@ -49,6 +53,7 @@
         android:fontFamily="sans-serif"
         android:paddingTop="16dp"
         android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="?android:textColorPrimary"
         android:textSize="16sp" />
 
     <TextView
@@ -58,6 +63,7 @@
         android:fontFamily="sans-serif"
         android:paddingTop="16dp"
         android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="?android:textColorPrimary"
         android:textSize="16sp" />
 
     <TextView
@@ -67,15 +73,16 @@
         android:fontFamily="sans-serif"
         android:paddingTop="16dp"
         android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="?android:textColorPrimary"
         android:textSize="16sp" />
 
     <Button
-        android:layout_gravity="end"
-        android:layout_marginTop="8dp"
-        style="?android:attr/borderlessButtonStyle"
         android:id="@+id/dismiss"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="8dp"
         android:text="OK" />
 
 </LinearLayout>

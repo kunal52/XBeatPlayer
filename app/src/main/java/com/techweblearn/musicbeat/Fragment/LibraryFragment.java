@@ -2,25 +2,21 @@ package com.techweblearn.musicbeat.Fragment;
 
 
 import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 
 import com.techweblearn.musicbeat.Adapters.MusicLibraryPagerAdapter;
 import com.techweblearn.musicbeat.Helper.BottomNavigationViewHelper;
 import com.techweblearn.musicbeat.R;
+import com.techweblearn.musicbeat.Utils.Util;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -128,9 +124,23 @@ public class LibraryFragment extends Fragment implements BottomNavigationView.On
 
     private void intitBottomNavigationSelectorColor()
     {
+        int s=Util.getThemeAccentColor(getActivity());
+
+        int p=Util.lighter(s,0.4f);
         int[][] states;
         int[] colors;
-        if(PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("dark_theme",false)) {
+
+        states = new int[][]{
+                new int[]{android.R.attr.state_checked},
+                new int[]{-android.R.attr.state_checked},
+        };
+
+        colors = new int[]{
+                p,
+                s
+        };
+
+       /* if(PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("dark_theme",false)) {
 
 
             states = new int[][]{
@@ -155,7 +165,7 @@ public class LibraryFragment extends Fragment implements BottomNavigationView.On
                     Color.parseColor("#757575")
             };
 
-        }
+        }*/
 
         ColorStateList colorStateList=new ColorStateList(states,colors);
         bottomNavigationView.setItemIconTintList(colorStateList);

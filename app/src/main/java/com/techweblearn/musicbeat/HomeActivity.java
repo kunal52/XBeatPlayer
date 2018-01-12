@@ -4,10 +4,9 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -28,7 +27,6 @@ import com.techweblearn.musicbeat.Fragment.LibraryFragment;
 import com.techweblearn.musicbeat.Fragment.MiniPlayerLayout;
 import com.techweblearn.musicbeat.Fragment.PlayerLayout1;
 import com.techweblearn.musicbeat.Fragment.QueueSongFragment;
-import com.techweblearn.musicbeat.Utils.Permissions;
 import com.techweblearn.musicbeat.Utils.PreferencesUtil;
 import com.techweblearn.musicbeat.Utils.Util;
 import com.yarolegovich.slidingrootnav.SlideGravity;
@@ -51,8 +49,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     int height;
     int width;
-
-    private FirebaseAnalytics mFirebaseAnalytics;
     FrameLayout miniplayerlayout;
     SlidingUpPanelLayout slidingUpPanelLayout;
     Unbinder unbinder;
@@ -60,6 +56,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     boolean changeHomeFrament = false;
     boolean relaodPlayerLayout = false;
     TextView actionBarTitle;
+    private FirebaseAnalytics mFirebaseAnalytics;
     private SlidingRootNav slidingRootNav, queueSlidingNav;
     private android.support.v7.app.ActionBar actionBar;
     private Toolbar toolbar;
@@ -111,9 +108,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         sleepIcon.setOnClickListener(this);
         navigation_menu.setLayoutManager(new LinearLayoutManager(this));
         navigation_menu.setAdapter(drawerLayout);
-        if(isDarkTheme)
         sleepIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_av_timer_24dp));
-        else sleepIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_av_timer_black_24dp));
+        sleepIcon.setColorFilter(Util.getThemeAccentColor(this), PorterDuff.Mode.SRC_ATOP);
         sleepText.setText("Sleep Timer");
 
         if (savedInstanceState == null) //Check if App Start then add the Fragment Otherwise Not

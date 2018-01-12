@@ -1,9 +1,8 @@
 package com.techweblearn.musicbeat.Adapters;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.preference.PreferenceManager;
 import android.support.v4.media.MediaBrowserCompat.MediaItem;
 import android.support.v4.media.session.MediaSessionCompat;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 
 import com.techweblearn.musicbeat.Helper.ItemTouchHelperAdapter;
 import com.techweblearn.musicbeat.R;
+import com.techweblearn.musicbeat.Utils.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,13 +65,19 @@ public class QueueSongAdapter extends RecyclerView.Adapter<QueueSongAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        if (playingQueueIndex == position)
-            if (darkTheme)
+        if (playingQueueIndex == position) {
+            /*if (darkTheme)
                 holder.itemView.setBackground(context.getResources().getDrawable(R.drawable.curently_playing_gradient_dark));
             else
-                holder.itemView.setBackground(context.getResources().getDrawable(R.drawable.curently_playing_gradient));
+                holder.itemView.setBackground(context.getResources().getDrawable(R.drawable.curently_playing_gradient));*/
+
+            GradientDrawable gradientDrawable=new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,
+                    new int[]{Util.getThemePrimaryColor(context),Util.getThemeAccentColor(context)});
+            gradientDrawable.setGradientType(GradientDrawable.LINEAR_GRADIENT);
+            holder.itemView.setBackground(gradientDrawable);
+        }
         else
-            holder.itemView.setBackground(new ColorDrawable(getPrimaryColor(context)));
+            holder.itemView.setBackground(new ColorDrawable(Util.getThemePrimaryColor(context)));
 
 
         if (holder.getItemViewType() == 0) {

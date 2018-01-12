@@ -18,10 +18,6 @@
 
 
 
-
-
-
-
     <attr name="search_text_drawable" format="reference"/>
     <attr name="ic_home" format="reference"/>
     <attr name="ic_library" format="reference"/>
@@ -60,20 +56,21 @@
         <item name="ic_home">@drawable/ic_home_white_24dp</item>
     </style>
 
-    <style name="Wooden" parent="Theme.AppCompat.NoActionBar" >
+    <style name="Chocolate" parent="Theme.AppCompat.NoActionBar" >
+        <item name="android:windowBackground">@color/primaryDarkWood</item>
+
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowAnimationStyle">@null</item>
-        <item name="android:textColorPrimary">@color/primaryTextColorDark</item>
-        <item name="android:textColorSecondary">@color/secondaryTextColorDark</item>
-        <item name="colorPrimary">@color/primaryDark</item>
-        <item name="colorPrimaryDark">@color/secondaryDark</item>
-        <item name="colorAccent">@color/accentDark</item>
-        <item name="android:colorForeground">@color/foreground_material_dark</item>
+        <item name="android:textColorPrimary">@color/primaryTextColorWood</item>
+        <item name="android:textColorSecondary">@color/secondaryDarkWood</item>
+        <item name="colorPrimary">@color/primaryDarkWood</item>
+        <item name="colorPrimaryDark">@color/secondaryDarkWood</item>
+        <item name="colorAccent">@color/accentWood</item>
+        <item name="android:colorForeground">@color/secondaryDarkWood</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="search_text_drawable">@drawable/search_edittext_drawable_dark</item>
         <item name="ic_home">@drawable/ic_home_white_24dp</item>
     </style>
-
 
     <style name="SettingsTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
@@ -82,4 +79,6 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/primaryTextColorLight</item>
     </style>
+
+
 </resources>

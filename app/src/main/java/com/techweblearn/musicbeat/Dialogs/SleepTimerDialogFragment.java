@@ -8,9 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.support.v4.app.AlarmManagerCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.view.LayoutInflater;
@@ -22,9 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.techweblearn.musicbeat.R;
-import com.techweblearn.musicbeat.Service.MediaBrowserAdapter;
 import com.techweblearn.musicbeat.Service.MusicPlayBackService;
-import com.techweblearn.musicbeat.Service.SleepTimer;
 import com.techweblearn.musicbeat.Utils.PreferencesUtil;
 import com.techweblearn.musicbeat.Utils.Util;
 
@@ -39,16 +35,16 @@ import butterknife.Unbinder;
 public class SleepTimerDialogFragment extends DialogFragment implements AppCompatSeekBar.OnSeekBarChangeListener,View.OnClickListener {
 
 
+    private static final int maxTimer=180; //4 Hours
     @BindView(R.id.set_timer)Button set_timer;
     @BindView(R.id.cancel_button)Button cancel;
     @BindView(R.id.sleep_timer_seekbar)AppCompatSeekBar seekBar;
     @BindView(R.id.sleep_timer_text)TextView sleep_timer_text;
     @BindView(R.id.previos_set_sleeptime_text)TextView previos_set_sleeptime_text;
     @BindView(R.id.done)Button done;
-
-    private TimerUpdater timerUpdater;
-    private static final int maxTimer=180; //4 Hours
     Unbinder unbinder;
+    private TimerUpdater timerUpdater;
+
     public static SleepTimerDialogFragment create()
     {
         return new SleepTimerDialogFragment();
@@ -61,7 +57,6 @@ public class SleepTimerDialogFragment extends DialogFragment implements AppCompa
         unbinder= ButterKnife.bind(this,view);
         return view;
     }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -112,7 +107,6 @@ public class SleepTimerDialogFragment extends DialogFragment implements AppCompa
                 break;
             case R.id.done:
                 dismiss();
-
                 break;
         }
     }
@@ -130,7 +124,6 @@ public class SleepTimerDialogFragment extends DialogFragment implements AppCompa
     }
 
 
-
     private void cancelCurrentTimer()
     {
         PendingIntent pendingIntent=getPreviousPendingIntent();
@@ -141,6 +134,16 @@ public class SleepTimerDialogFragment extends DialogFragment implements AppCompa
         }
         PreferencesUtil.setSleepTimer(getActivity(),0);
         timerUpdater.onFinish();
+    }
+
+    private PendingIntent getPreviousPendingIntent()
+    {
+        return PendingIntent.getBroadcast(getActivity(),23,getIntent(),PendingIntent.FLAG_NO_CREATE);
+    }
+
+    private Intent getIntent()
+    {
+        return new Intent(getActivity(), MusicPlayBackService.SleepTimer.class);
     }
 
     private class TimerUpdater extends CountDownTimer {
@@ -158,16 +161,6 @@ public class SleepTimerDialogFragment extends DialogFragment implements AppCompa
             cancel.setVisibility(View.GONE);
             previos_set_sleeptime_text.setVisibility(View.GONE);
         }
-    }
-
-    private PendingIntent getPreviousPendingIntent()
-    {
-        return PendingIntent.getBroadcast(getActivity(),23,getIntent(),PendingIntent.FLAG_NO_CREATE);
-    }
-
-    private Intent getIntent()
-    {
-        return new Intent(getActivity(), MusicPlayBackService.SleepTimer.class);
     }
 
 }

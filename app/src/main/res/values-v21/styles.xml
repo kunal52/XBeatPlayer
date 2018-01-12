@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Wooden" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:textColorPrimary">@color/primaryTextColorWood</item>
+        <item name="android:textColorSecondary">@color/secondaryDarkWood</item>
+        <item name="colorPrimary">@color/primaryDarkWood</item>
+        <item name="colorPrimaryDark">@color/secondaryDarkWood</item>
+        <item name="colorAccent">@color/accentWood</item>
+        <item name="android:colorForeground">@color/primaryDarkWood</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="search_text_drawable">@drawable/search_edittext_drawable_dark</item>
+        <item name="ic_home">@drawable/ic_home_white_24dp</item>
+        <item name="android:colorBackground">?android:attr/colorPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/secondaryDarkWood</item>
+    </style>
+</resources>
