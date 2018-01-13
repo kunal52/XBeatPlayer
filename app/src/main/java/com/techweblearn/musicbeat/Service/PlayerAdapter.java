@@ -23,7 +23,6 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.support.annotation.NonNull;
 import android.support.v4.media.MediaDescriptionCompat;
-import android.support.v4.media.MediaMetadataCompat;
 
 /**
  * Abstract player implementation that handles playing music with proper handling of headphones
@@ -36,8 +35,11 @@ public abstract class PlayerAdapter {
 
     private static final IntentFilter AUDIO_NOISY_INTENT_FILTER =
             new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
-
+    private final Context mApplicationContext;
+    private final AudioManager mAudioManager;
+    private final AudioFocusHelper mAudioFocusHelper;
     private boolean mAudioNoisyReceiverRegistered = false;
+    private boolean mPlayOnAudioFocus = false;
     private final BroadcastReceiver mAudioNoisyReceiver =
             new BroadcastReceiver() {
                 @Override
@@ -49,12 +51,6 @@ public abstract class PlayerAdapter {
                     }
                 }
             };
-
-    private final Context mApplicationContext;
-    private final AudioManager mAudioManager;
-    private final AudioFocusHelper mAudioFocusHelper;
-
-    private boolean mPlayOnAudioFocus = false;
 
     public PlayerAdapter(@NonNull Context context) {
         mApplicationContext = context.getApplicationContext();
@@ -74,6 +70,8 @@ public abstract class PlayerAdapter {
             onPlay();
         }
     }
+
+    public abstract void onQueueComplete();
 
     /**
      * Called when media is ready to be played and indicates the app has audio focus.

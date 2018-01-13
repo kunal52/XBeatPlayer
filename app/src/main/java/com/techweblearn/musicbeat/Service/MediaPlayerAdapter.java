@@ -17,17 +17,13 @@
 package com.techweblearn.musicbeat.Service;
 
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.SystemClock;
 import android.support.v4.media.MediaDescriptionCompat;
-import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 
-import com.techweblearn.musicbeat.Loader.SongLoader;
 import com.techweblearn.musicbeat.Utils.Extras;
 import com.techweblearn.musicbeat.Utils.PreferencesUtil;
-import com.techweblearn.musicbeat.provider.MediaItems;
 
 
 public final class MediaPlayerAdapter extends PlayerAdapter {
@@ -157,6 +153,12 @@ public final class MediaPlayerAdapter extends PlayerAdapter {
     @Override
     public boolean isPlaying() {
         return mMediaPlayer != null && mMediaPlayer.isPlaying();
+    }
+
+    @Override
+    public void onQueueComplete() {
+        setNewState(PlaybackStateCompat.STATE_PAUSED);
+        PreferencesUtil.saveCurrentPosition(mContext,mMediaPlayer.getCurrentPosition());
     }
 
     @Override

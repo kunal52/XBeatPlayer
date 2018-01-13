@@ -402,6 +402,11 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
 
         }
 
+        public void queueComplete()
+        {
+            mPlayback.onQueueComplete();
+        }
+
         @Override
         public void onPause() {
             mPlayback.pause();
@@ -532,7 +537,7 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
                     return;
                 case PlaybackStateCompat.REPEAT_MODE_NONE:
                     if (mCallback.isLastSong()) {
-                        mCallback.onPause();
+                        mCallback.queueComplete();
                         return;
                     } else {
                         mCallback.onSkipToNext();

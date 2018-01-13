@@ -30,7 +30,6 @@ import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,52 +40,16 @@ import java.util.List;
 public class MediaBrowserAdapter  {
 
     private static final String TAG = MediaBrowserAdapter.class.getSimpleName();
-
-
-
-
-    /**
-     * Helper class for easily subscribing to changes in a MediaBrowserService connection.
-     */
-    public static abstract class MediaBrowserChangeListener {
-
-        public void onConnected(@Nullable MediaControllerCompat mediaController) {
-        }
-
-        public void onMetadataChanged(@Nullable MediaMetadataCompat mediaMetadata) {
-        }
-
-        public void onPlaybackStateChanged(@Nullable PlaybackStateCompat playbackState) {
-        }
-
-        public void onChildrenLoaded(@NonNull String parentId, @NonNull List<MediaBrowserCompat.MediaItem> children) {
-        }
-
-        public void onQueueUpdated(String title, List<MediaSessionCompat.QueueItem> queueItems) {
-        }
-
-        public void onExtras(Bundle bundle){
-        }
-
-    }
-
-
     private final InternalState mState;
-
     private final Context mContext;
     private final List<MediaBrowserChangeListener> mListeners = new ArrayList<>();
-
-
-
     private final MediaBrowserConnectionCallback mMediaBrowserConnectionCallback =
             new MediaBrowserConnectionCallback();
     private final MediaControllerCallback mMediaControllerCallback =
             new MediaControllerCallback();
     private final MediaBrowserSubscriptionCallback mMediaBrowserSubscriptionCallback =
             new MediaBrowserSubscriptionCallback();
-
     private MediaBrowserCompat mMediaBrowser;
-
     @Nullable
     private MediaControllerCompat mMediaController;
 
@@ -138,23 +101,15 @@ public class MediaBrowserAdapter  {
         Log.d(TAG, "resetState: ");
     }
 
-
     public void addQueueItem(MediaDescriptionCompat mediaDescriptionCompat)
     {
         mMediaController.addQueueItem(mediaDescriptionCompat);
     }
 
-
     public void removeQueueItem(MediaDescriptionCompat mediaDescriptionCompat)
     {
         mMediaController.removeQueueItem(mediaDescriptionCompat);
     }
-
-
-
-
-
-
 
     public MediaControllerCompat.TransportControls getTransportControls() {
         if (mMediaController == null) {
@@ -193,6 +148,31 @@ public class MediaBrowserAdapter  {
     public interface ListenerCommand {
 
         void perform(@NonNull MediaBrowserChangeListener listener);
+    }
+
+    /**
+     * Helper class for easily subscribing to changes in a MediaBrowserService connection.
+     */
+    public static abstract class MediaBrowserChangeListener {
+
+        public void onConnected(@Nullable MediaControllerCompat mediaController) {
+        }
+
+        public void onMetadataChanged(@Nullable MediaMetadataCompat mediaMetadata) {
+        }
+
+        public void onPlaybackStateChanged(@Nullable PlaybackStateCompat playbackState) {
+        }
+
+        public void onChildrenLoaded(@NonNull String parentId, @NonNull List<MediaBrowserCompat.MediaItem> children) {
+        }
+
+        public void onQueueUpdated(String title, List<MediaSessionCompat.QueueItem> queueItems) {
+        }
+
+        public void onExtras(Bundle bundle){
+        }
+
     }
 
     // Receives callbacks from the MediaBrowser when it has successfully connected to the
@@ -277,6 +257,8 @@ public class MediaBrowserAdapter  {
             } else {
                 mState.setMediaMetadata(metadata);
             }
+
+            mState.setMediaMetadata(metadata);
             performOnAllListeners(new ListenerCommand() {
                 @Override
                 public void perform(@NonNull MediaBrowserChangeListener listener) {
