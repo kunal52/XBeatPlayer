@@ -72,6 +72,22 @@
         <item name="ic_home">@drawable/ic_home_white_24dp</item>
     </style>
 
+    <style name="CoolBlue" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:windowBackground">@color/primaryCoolBlue</item>
+
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:textColorPrimary">@color/primaryTextColorCoolBlue</item>
+        <item name="android:textColorSecondary">@color/secondaryTextColorCoolBlue</item>
+        <item name="colorPrimary">@color/primaryCoolBlue</item>
+        <item name="colorPrimaryDark">@color/secondaryTextColorCoolBlue</item>
+        <item name="colorAccent">@color/secondaryTextColorCoolBlue</item>
+        <item name="android:colorForeground">@color/secondaryTextColorCoolBlue</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="search_text_drawable">@drawable/search_edittext_drawable_dark</item>
+        <item name="ic_home">@drawable/ic_home_white_24dp</item>
+    </style>
+
     <style name="SettingsTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="colorPrimary">@color/colorPrimary</item>

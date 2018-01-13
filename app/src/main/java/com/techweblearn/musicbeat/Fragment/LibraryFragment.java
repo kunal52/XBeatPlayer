@@ -124,9 +124,10 @@ public class LibraryFragment extends Fragment implements BottomNavigationView.On
 
     private void intitBottomNavigationSelectorColor()
     {
-        int s=Util.getThemeAccentColor(getActivity());
+        int color=Util.getThemeAccentColor(getActivity());
 
-        int p=Util.lighter(s,0.4f);
+        int lighter=Util.lighter(color,0.2f);
+        int darker=Util.darker(color,0.8f);
         int[][] states;
         int[] colors;
 
@@ -136,8 +137,8 @@ public class LibraryFragment extends Fragment implements BottomNavigationView.On
         };
 
         colors = new int[]{
-                p,
-                s
+                darker,
+                lighter
         };
 
        /* if(PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("dark_theme",false)) {

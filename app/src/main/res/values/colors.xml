@@ -38,13 +38,25 @@
 
 
 
-    //Wooden Colour Theme
+    //Chocolate Colour Theme
 
     <color name="primaryDarkWood">#382820</color>
     <color name="secondaryDarkWood">#5c4636</color>
     <color name="accentWood">#e0b888</color>
     <color name="primaryTextColorWood">#e4bb8a</color>
     <color name="secondaryTextColorWood">#caa271</color>
+
+
+    //Cool Blue
+    <color name="primaryCoolBlue">#FFFFFF</color>
+    <color name="secondaryCoolBlue">#678ace</color>
+    <color name="accentCoolBlue">#678ace</color>
+    <color name="primaryTextColorCoolBlue">#0c3b92</color>
+    <color name="secondaryTextColorCoolBlue">#3365c7</color>
+
+
+
+
 
 
     <color name="notification_bg">#e91e63</color>

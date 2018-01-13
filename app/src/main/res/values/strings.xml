@@ -412,12 +412,14 @@
         <item>Light</item>
         <item>Dark</item>
         <item>Chocolate Brown</item>
+        <item>Ocean Blue</item>
     </string-array>
 
     <string-array name="theme_values">
         <item>0</item>
         <item>1</item>
         <item>2</item>
+        <item>3</item>
     </string-array>
 
 </resources>

@@ -159,6 +159,7 @@ public class Util {
             case 0:return R.style.AppTheme;
             case 1:return R.style.AppDarkTheme;
             case 2:return R.style.Chocolate;
+            case 3:return R.style.CoolBlue;
             default: return R.style.AppTheme;
 
         }
@@ -180,7 +181,7 @@ public class Util {
     public static int getThemeBackgroundColor(final Context context)
     {
         final TypedValue value = new TypedValue ();
-        context.getTheme ().resolveAttribute (R.attr.background, value, true);
+        context.getTheme ().resolveAttribute (R.attr.titleTextColor, value, true);
         return value.data;
     }
 
@@ -195,6 +196,16 @@ public class Util {
         int green = (int) ((Color.green(color) * (1 - factor) / 255 + factor) * 255);
         int blue = (int) ((Color.blue(color) * (1 - factor) / 255 + factor) * 255);
         return Color.argb(Color.alpha(color), red, green, blue);
+    }
+
+    public static int darker(int color,float factor)
+    {
+        int a = (color >> 24) & 0xFF;
+        int r = (int) (((color >> 16) & 0xFF) * factor);
+        int g = (int) (((color >> 8) & 0xFF) * factor);
+        int b = (int) ((color & 0xFF) * factor);
+
+        return (a << 24) | (r << 16) | (g << 8) | b;
     }
 
 }
