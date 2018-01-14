@@ -1,7 +1,6 @@
 package com.techweblearn.musicbeat.Fragment;
 
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,15 +15,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.techweblearn.musicbeat.Adapters.ArtistsHorizontalAdapter;
-import com.techweblearn.musicbeat.Adapters.HorizontalRecyclerViewAdapter;
 import com.techweblearn.musicbeat.Adapters.SongListRecyclerviewAdapter;
 import com.techweblearn.musicbeat.Dialogs.SongDetailDialog;
+import com.techweblearn.musicbeat.Glide.audiocover.GlideApp;
 import com.techweblearn.musicbeat.Loader.ArtistLoader;
 import com.techweblearn.musicbeat.Loader.ArtistSongLoader;
 import com.techweblearn.musicbeat.Loader.PlaylistLoader;
-import com.techweblearn.musicbeat.Loader.SongLoader;
 import com.techweblearn.musicbeat.Models.Album;
 import com.techweblearn.musicbeat.Models.Playlist;
 import com.techweblearn.musicbeat.Models.Song;
@@ -34,6 +32,7 @@ import com.techweblearn.musicbeat.Service.MediaBrowserAdapter;
 import com.techweblearn.musicbeat.Utils.PlaylistsUtil;
 import com.techweblearn.musicbeat.Utils.Util;
 import com.techweblearn.musicbeat.provider.MediaItems;
+import com.techweblearn.musicbeat.provider.NetworkInfoStore;
 
 import java.util.ArrayList;
 
@@ -109,6 +108,15 @@ public class ArtistFragmentFullView extends Fragment implements SongListRecycler
         artistsHorizontalAdapter.setItemClickedListener(this);
         album_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         album_recyclerview.setAdapter(artistsHorizontalAdapter);
+
+
+        GlideApp.with(getActivity())
+                .asDrawable()
+                .error(Util.getArtistDrawable(getActivity()))
+                .load(new NetworkInfoStore(getActivity()).getArtistArt(artist_name_))
+                .transition(new DrawableTransitionOptions().crossFade())
+                .into(artist_art);
+
 
         back_2.setOnClickListener(this);
         back.setOnClickListener(this);
