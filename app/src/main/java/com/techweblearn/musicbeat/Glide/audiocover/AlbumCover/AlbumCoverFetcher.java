@@ -4,15 +4,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
-
-import java.io.ByteArrayInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 
 /**
  * Created by Kunal on 04-12-2017.
@@ -30,8 +25,6 @@ public class AlbumCoverFetcher implements DataFetcher<Bitmap> {
         this.audioFileCover = audioFileCover;
 
     }
-
-
 
     @Override
     public void loadData(Priority priority, DataCallback<? super Bitmap> callback) {
@@ -56,15 +49,12 @@ public class AlbumCoverFetcher implements DataFetcher<Bitmap> {
 
     @Override
     public void cleanup() {
-        Log.d("Module","CleanUp");
-
-
 
     }
 
     @Override
     public void cancel() {
-        Log.d("Module","Cancel");
+
     }
 
     @NonNull

@@ -20,15 +20,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.media.session.MediaSession;
 import android.os.AsyncTask;
 import android.provider.BaseColumns;
 import android.provider.MediaStore.Audio.AudioColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.session.MediaSessionCompat;
-
 
 import com.techweblearn.musicbeat.Loader.SongLoader;
 import com.techweblearn.musicbeat.Models.Song;

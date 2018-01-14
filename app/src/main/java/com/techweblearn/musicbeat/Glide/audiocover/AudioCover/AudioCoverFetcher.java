@@ -29,10 +29,6 @@ public class AudioCoverFetcher implements DataFetcher<InputStream> {
     @Override
     public void loadData(Priority priority, DataCallback<? super InputStream> callback) {
 
-
-        Log.d("Picture", "LoadData");
-
-
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         try {
             retriever.setDataSource(audioFileCover.filePath);

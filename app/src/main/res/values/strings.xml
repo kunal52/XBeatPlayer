@@ -330,7 +330,7 @@
     <string name="remove_selected_playlist">Remove Selected Playlist</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="home_fragment_detail">Recently Played Music Will Show There</string>
+    <string name="home_fragment_detail">Recently Played Music Will Show Here</string>
 
     <string-array name="recently_added_entries">
 

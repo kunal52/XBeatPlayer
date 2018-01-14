@@ -7,44 +7,7 @@
     tools:context="com.techweblearn.musicbeat.Fragment.HomeFragment">
 
 
-    <RelativeLayout
 
-        android:id="@+id/nothing_found"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/to_library"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="65dp"
-            android:text="@string/home_fragment_detail"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="15sp" />
-
-        <Button
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:background="?attr/search_text_drawable"
-            android:text="Go To Library"
-            android:id="@+id/to_library"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/button3"
-            android:layout_centerVertical="true" />
-
-        <Button
-            android:visibility="invisible"
-            android:text="Add Playlist"
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
-
-
-    </RelativeLayout>
 
 <ScrollView android:layout_height="match_parent"
     android:layout_width="match_parent">
@@ -111,4 +74,43 @@
 
 
 </ScrollView>
+
+    <RelativeLayout
+
+        android:id="@+id/nothing_found"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/to_library"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="65dp"
+            android:text="@string/home_fragment_detail"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="15sp" />
+
+        <Button
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:background="?attr/search_text_drawable"
+            android:text="Go To Library"
+            android:id="@+id/to_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/button3"
+            android:layout_centerVertical="true" />
+
+        <Button
+            android:visibility="invisible"
+            android:text="Add Playlist"
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+
+    </RelativeLayout>
 </FrameLayout>

@@ -11,12 +11,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.techweblearn.musicbeat.Glide.audiocover.AudioCover.AudioFileCover;
 import com.techweblearn.musicbeat.Glide.audiocover.GlideApp;
 import com.techweblearn.musicbeat.Models.Album;
 import com.techweblearn.musicbeat.Models.Artist;
 import com.techweblearn.musicbeat.R;
 import com.techweblearn.musicbeat.Utils.Util;
+import com.techweblearn.musicbeat.provider.NetworkInfoStore;
 
 import java.util.ArrayList;
 
@@ -29,6 +29,7 @@ import butterknife.ButterKnife;
 
 public class ArtistGridAdapter extends RecyclerView.Adapter<ArtistGridAdapter.ViewHolder> {
 
+    private NetworkInfoStore networkInfoStore;
     private Context contex;
     private ArrayList<Artist>artistArrayList;
 
@@ -36,6 +37,7 @@ public class ArtistGridAdapter extends RecyclerView.Adapter<ArtistGridAdapter.Vi
 
         this.contex = contex;
         this.artistArrayList = artistArrayList;
+        networkInfoStore = new NetworkInfoStore(contex);
 
     }
 
@@ -46,15 +48,16 @@ public class ArtistGridAdapter extends RecyclerView.Adapter<ArtistGridAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(ArtistGridAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final ArtistGridAdapter.ViewHolder holder, final int position) {
 
         holder.primary_name.setText(artistArrayList.get(position).getName());
         String s=artistArrayList.get(position).getAlbumCount()+" Albums . "+artistArrayList.get(position).getSongCount()+" Songs ";
         holder.secoundry_name.setText(s);
-        Drawable error = Util.getArtistDrawable(contex);
+        final Drawable error = Util.getArtistDrawable(contex);
+
 
         GlideApp.with(contex)
-                .load(new AudioFileCover(artistArrayList.get(position).safeGetFirstAlbum().safeGetFirstSong().data))
+                .load(networkInfoStore.getArtistArt(artistArrayList.get(position).getName()))
                 .error(error)
                 .thumbnail(0.2f)
                 .transition(new DrawableTransitionOptions().crossFade())
