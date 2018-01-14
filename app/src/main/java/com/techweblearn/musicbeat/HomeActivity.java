@@ -29,6 +29,7 @@ import com.techweblearn.musicbeat.Fragment.PlayerLayout1;
 import com.techweblearn.musicbeat.Fragment.QueueSongFragment;
 import com.techweblearn.musicbeat.Utils.PreferencesUtil;
 import com.techweblearn.musicbeat.Utils.Util;
+import com.techweblearn.musicbeat.network.services.ArtistInfoServices;
 import com.yarolegovich.slidingrootnav.SlideGravity;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
@@ -111,6 +112,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         sleepIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_av_timer_24dp));
         sleepIcon.setColorFilter(Util.getThemeAccentColor(this), PorterDuff.Mode.SRC_ATOP);
         sleepText.setText("Sleep Timer");
+
+        startService(new Intent(this, ArtistInfoServices.class));
 
         if (savedInstanceState == null) //Check if App Start then add the Fragment Otherwise Not
             addFragment();
