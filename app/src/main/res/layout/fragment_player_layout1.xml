@@ -1,39 +1,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/player"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.techweblearn.musicbeat.Fragment.PlayerLayout1">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_weight="2">
-
-        <ImageView
-
-            android:id="@+id/viewPagerBackground"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
         <android.support.v4.view.ViewPager
 
             android:id="@+id/songs_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="300dp"
+            android:layout_weight="2"/>
 
-    </FrameLayout>
 
 
     <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:padding="8dp">
 
         <ImageView
-            android:visibility="invisible"
             android:id="@+id/favourite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,6 +33,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:src="@drawable/ic_favorite_black_24dp"
+            android:visibility="invisible"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -60,7 +52,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:textColor="?android:textColorSecondary"
             android:id="@+id/artist_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,6 +61,7 @@
             android:fontFamily="@font/open_sans"
             android:maxLines="1"
             android:textAlignment="center"
+            android:textColor="?android:textColorSecondary"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -95,23 +87,23 @@
 
         <TextView
 
-            android:textColor="?android:textColorSecondary"
             android:id="@+id/current_time"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_marginLeft="16dp"
-            android:fontFamily="@font/open_sans" />
+            android:fontFamily="@font/open_sans"
+            android:textColor="?android:textColorSecondary" />
 
         <TextView
-            android:textColor="?android:textColorSecondary"
             android:id="@+id/total_time"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/open_sans"
-            android:gravity="end" />
+            android:gravity="end"
+            android:textColor="?android:textColorSecondary" />
 
         <com.techweblearn.musicbeat.View.MediaSeekBar
             android:id="@+id/seekbar"
@@ -132,48 +124,48 @@
         android:padding="8dp">
 
         <ImageView
-            android:layout_centerVertical="true"
             android:id="@+id/shuffel"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
             android:paddingStart="16dp" />
 
         <ImageView
-            android:layout_marginEnd="40dp"
-            android:layout_toStartOf="@id/play_pause"
             android:id="@+id/prev"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="40dp"
+            android:layout_toStartOf="@id/play_pause"
             android:src="@drawable/ic_previous_track" />
 
 
        <android.support.design.widget.FloatingActionButton
-           app:backgroundTint="?android:textColorSecondary"
-           app:elevation="0dp"
-           android:padding="16dp"
            android:id="@+id/play_pause"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:layout_centerInParent="true"  />
+           android:layout_centerInParent="true"
+           android:padding="16dp"
+           app:backgroundTint="?android:textColorSecondary"
+           app:elevation="0dp"  />
 
         <ImageView
-            android:layout_marginStart="40dp"
-            android:layout_toEndOf="@id/play_pause"
             android:id="@+id/next"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_centerVertical="true"
+            android:layout_marginStart="40dp"
+            android:layout_toEndOf="@id/play_pause"
             android:src="@drawable/ic_next_track_button" />
 
         <ImageView
-            android:layout_centerVertical="true"
             android:id="@+id/repeat"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentEnd="true"
             android:layout_alignTop="@+id/next"
+            android:layout_centerVertical="true"
             android:paddingEnd="16dp" />
 
     </RelativeLayout>

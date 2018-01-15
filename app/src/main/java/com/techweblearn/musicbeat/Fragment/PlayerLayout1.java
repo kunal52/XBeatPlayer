@@ -2,7 +2,6 @@ package com.techweblearn.musicbeat.Fragment;
 
 
 import android.os.Bundle;
-import android.preference.Preference;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -19,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.techweblearn.musicbeat.Adapters.SongCoverPagerAdapter;
@@ -53,7 +53,6 @@ import com.techweblearn.musicbeat.View.PagerTransformation.RotateUpTransformer;
 import com.techweblearn.musicbeat.View.PagerTransformation.StackTransformer;
 import com.techweblearn.musicbeat.View.PagerTransformation.TabletTransformer;
 import com.techweblearn.musicbeat.View.PagerTransformation.ZoomInTransformer;
-import com.techweblearn.musicbeat.View.PagerTransformation.ZoomOutSlideTransformer;
 import com.techweblearn.musicbeat.View.PagerTransformation.ZoomOutTranformer;
 import com.techweblearn.musicbeat.View.PlayPauseDrawableDark;
 
@@ -73,34 +72,20 @@ import static com.techweblearn.musicbeat.Fragment.SongFragment.ADD_NEW_PLAYLIST_
 public class PlayerLayout1 extends PlayerLayoutBase implements View.OnClickListener {
 
 
-    @BindView(R.id.songs_viewpager)
-    ViewPager viewPager;
-    @BindView(R.id.favourite)
-    ImageView favourite;
-    @BindView(R.id.song_name)
-    TextView song_name;
-    @BindView(R.id.artist_name)
-    TextView artist_name;
-    @BindView(R.id.more_options)
-    ImageView moreoption;
-    @BindView(R.id.current_time)
-    TextView current_time;
-    @BindView(R.id.total_time)
-    TextView total_time;
-    @BindView(R.id.shuffel)
-    ImageView shuffel;
-    @BindView(R.id.prev)
-    ImageView prev;
-    @BindView(R.id.play_pause)
-    FloatingActionButton play_pause;
-    @BindView(R.id.next)
-    ImageView next;
-    @BindView(R.id.repeat)
-    ImageView repeat;
-    @BindView(R.id.viewPagerBackground)
-    ImageView viewPagerBackground;
-    @BindView(R.id.seekbar)
-    MediaSeekBar mediaSeekBar;
+    @BindView(R.id.songs_viewpager) ViewPager viewPager;
+    @BindView(R.id.favourite) ImageView favourite;
+    @BindView(R.id.song_name) TextView song_name;
+    @BindView(R.id.artist_name) TextView artist_name;
+    @BindView(R.id.more_options) ImageView moreoption;
+    @BindView(R.id.current_time) TextView current_time;
+    @BindView(R.id.total_time) TextView total_time;
+    @BindView(R.id.shuffel) ImageView shuffel;
+    @BindView(R.id.prev) ImageView prev;
+    @BindView(R.id.play_pause) FloatingActionButton play_pause;
+    @BindView(R.id.next) ImageView next;
+    @BindView(R.id.repeat) ImageView repeat;
+    @BindView(R.id.seekbar) MediaSeekBar mediaSeekBar;
+    @BindView(R.id.player)LinearLayout linearLayout;
 
 
     PlayPauseDrawableDark play_pause_drawable;
