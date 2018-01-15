@@ -6,7 +6,7 @@ android {
         applicationId "com.techweblearn.musicbeat"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 9
+        versionCode 10
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -40,12 +40,12 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.github.apl-devs:appintro:v4.2.2'
-
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation files('libs/jaudiotagger-android-2.2.3.jar')
+    implementation files('libs/jsoup-1.11.2.jar')
 }
 
 

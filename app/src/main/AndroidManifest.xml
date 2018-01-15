@@ -41,6 +41,7 @@
             </intent-filter>
         </service>
         <service android:name=".network.services.ArtistInfoServices" />
+        <service android:name=".network.services.LyricsFetcherService" />
 
 
         <!--
