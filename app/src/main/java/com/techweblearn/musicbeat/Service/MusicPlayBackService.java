@@ -250,19 +250,21 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
                     break;
 
                 case PLAY_SONGLIST:
-                    mQueueIndex = 0;
+
+                    mPreparedMedia = null;
                     extras.setClassLoader(Playlist.class.getClassLoader());
                     ArrayList<Song> song_list1 = extras.getParcelableArrayList("song_list");
                     originalQueue.clear();
-                    for (MediaSessionCompat.QueueItem queueItem : MediaItems.getAllQueueItemFromSongList(getApplicationContext(), song_list1)) {
+                    for (MediaSessionCompat.QueueItem queueItem : MediaItems.getAllQueueItemFromSongList(getApplicationContext(), song_list1))
                         originalQueue.add(queueItem);
-                    }
+
+                    mQueueIndex = 0;
                     mSession.setQueue(originalQueue);
 
                     musicPlaybackQueueStore.new SaveOriginalQueueAsyncTask(getApplicationContext()).execute(originalQueue);
-                    if (originalQueue.size() > 0) {
+
+                    if (originalQueue.size() > 0)
                         onPlay();
-                    }
                     break;
 
                 case ADD_ALL_SONGS_TO_QUEUE:
@@ -312,6 +314,7 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
 
         private void addToNext(String mediaId) {
             int index = isAlreadyInList(mediaId);
+
             if (index < 0) {
                 originalQueue.add(mQueueIndex + 1, MediaItems.queueItemFromMediaId(getApplicationContext(), mediaId));
             } else {
@@ -326,11 +329,12 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
                     MediaSessionCompat.QueueItem queueItem = originalQueue.remove(index);
                     originalQueue.add(mQueueIndex + 1, queueItem);
                 }
-
             }
+
             mSession.setQueue(originalQueue);
             MusicPlaybackQueueStore musicPlaybackQueueStore = new MusicPlaybackQueueStore(getApplicationContext());
             musicPlaybackQueueStore.new SaveOriginalQueueAsyncTask(getApplicationContext()).execute(originalQueue);
+
         }
 
 
@@ -345,7 +349,6 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
         }
 
         public void playSingleSong(Song song) {
-
             mPreparedMedia = null;
             originalQueue.clear();
             originalQueue.add(MediaItems.queueItemFromSong(getApplicationContext(), song));

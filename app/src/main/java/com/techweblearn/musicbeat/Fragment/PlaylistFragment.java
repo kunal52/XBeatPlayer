@@ -13,20 +13,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.techweblearn.musicbeat.Adapters.PlaylistHorizontalRecyclerview;
 import com.techweblearn.musicbeat.Adapters.PlaylistSongListRecyclerviewAdapter;
-import com.techweblearn.musicbeat.Adapters.SongListRecyclerviewAdapter;
-import com.techweblearn.musicbeat.Dialogs.DeleteAlertFragment;
 import com.techweblearn.musicbeat.Dialogs.RenamePlaylistDialogFragment;
 import com.techweblearn.musicbeat.Dialogs.SongDetailDialog;
 import com.techweblearn.musicbeat.Loader.ArtistLoader;
 import com.techweblearn.musicbeat.Loader.PlaylistLoader;
 import com.techweblearn.musicbeat.Loader.PlaylistSongLoader;
-import com.techweblearn.musicbeat.Models.Playlist;
 import com.techweblearn.musicbeat.Models.PlaylistSong;
-import com.techweblearn.musicbeat.Models.Song;
 import com.techweblearn.musicbeat.R;
 import com.techweblearn.musicbeat.Service.MediaBrowserAdapter;
 import com.techweblearn.musicbeat.Utils.Constants;
@@ -34,7 +29,6 @@ import com.techweblearn.musicbeat.Utils.PlaylistsUtil;
 import com.techweblearn.musicbeat.provider.MediaItems;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -131,11 +125,13 @@ public class PlaylistFragment extends Fragment implements PlaylistHorizontalRecy
         songListRecyclerviewAdapter.OnSongClick(this);
         songRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         songRecyclerView.setAdapter(songListRecyclerviewAdapter);
-        int id = getArguments().getInt("playlist_id");
-        int position=getArguments().getInt("position");
-        selected_playlistid=id;
-        playlistRecyclerView.scrollToPosition(position);
-        onItemClicked(position,id);
+        if (getArguments() != null) {
+            int id = getArguments().getInt("playlist_id");
+            int position = getArguments().getInt("position");
+            selected_playlistid = id;
+            playlistRecyclerView.scrollToPosition(position);
+            onItemClicked(position, id);
+        }
 
     }
 

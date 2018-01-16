@@ -38,7 +38,7 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
                 context.getResources().getString(R.string.songs),
                 context.getResources().getString(R.string.albums),
                 context.getResources().getString(R.string.artists),
-                context.getResources().getString(R.string.playlists)
+                context.getResources().getString(R.string.genre)
         };
 
         final MusicFragments[] fragments = MusicFragments.values();
@@ -110,7 +110,6 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
         SONG(SongFragment.class),
         ALBUM(AlbumFragment.class),
         ARTIST(ArtistFragment.class);
-     //   PLAYLIST(PlaylistsFragment.class);
 
         private final Class<? extends Fragment> mFragmentClass;
 

@@ -328,9 +328,11 @@
     <string name="save_playlist">Save Playlist</string>
     <string name="rename_selected_playlist">Rename Selected playlist</string>
     <string name="remove_selected_playlist">Remove Selected Playlist</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="top_played">Top Played</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home_fragment_detail">Recently Played Music Will Show Here</string>
+
 
     <string-array name="recently_added_entries">
 

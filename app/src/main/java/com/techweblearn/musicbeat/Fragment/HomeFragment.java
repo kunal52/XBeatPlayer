@@ -10,14 +10,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.techweblearn.musicbeat.Adapters.HorizontalRecyclerViewAdapter;
 import com.techweblearn.musicbeat.Adapters.PlaylistHorizontalRecyclerview;
@@ -55,6 +53,8 @@ public class HomeFragment extends Fragment implements HomeViewInterface ,
     @BindView(R.id.text_playlists) TextView text_playlists;
     @BindView(R.id.to_library)Button to_library;
     @BindView(R.id.nothing_found)RelativeLayout layout;
+    @BindView(R.id.add_playlist_button)
+    Button addPlaylist;
 
     Unbinder unbind;
     HomePresenterInterface homePresenter;
@@ -96,6 +96,8 @@ public class HomeFragment extends Fragment implements HomeViewInterface ,
         homePresenter.LoadTopRecentlySong();
 
         to_library.setOnClickListener(this);
+        addPlaylist.setOnClickListener(this);
+
         getActivity().getContentResolver().
                 registerContentObserver(
                         MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI,
@@ -107,6 +109,10 @@ public class HomeFragment extends Fragment implements HomeViewInterface ,
                         MediaStore.Audio.Playlists.INTERNAL_CONTENT_URI,
                         true,
                         new PlayListChange(null));
+
+        text_recently_added.setOnClickListener(this);
+        text_recently_played.setOnClickListener(this);
+        text_playlists.setOnClickListener(this);
     }
 
     @Override
@@ -170,12 +176,13 @@ public class HomeFragment extends Fragment implements HomeViewInterface ,
 
     @Override
     public void onLoadPlaylists(ArrayList<Playlist> playlists) {
+
         playlists_adapter=new PlaylistHorizontalRecyclerview(getActivity(),playlists);
         playlists_adapter.setCallback(this);
         playlists_recyclerview.setAdapter(playlists_adapter);
-        if(playlists.size()==0)
-            text_playlists.setVisibility(View.GONE);
-        else layout.setVisibility(View.GONE);
+        if (playlists.size() != 0)
+            layout.setVisibility(View.GONE);
+
     }
 
     @Override
@@ -197,6 +204,7 @@ public class HomeFragment extends Fragment implements HomeViewInterface ,
 
     @Override
     public void onItemClicked(Song song) {
+
         Bundle bundle=new Bundle();
         bundle.putParcelable("song",song);
         mediaBrowserAdapter.getTransportControls().sendCustomAction(Constants.PLAY_SINGLE_SONG,bundle);
@@ -222,17 +230,40 @@ public class HomeFragment extends Fragment implements HomeViewInterface ,
 
     @Override
     public void onClick(View v) {
-        android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        if (getActivity().getSupportFragmentManager().findFragmentByTag("Library") == null) {
-            fragmentTransaction.add(R.id.container, new LibraryFragment(), "Library").commit();
-            getActivity().getSupportFragmentManager().beginTransaction().hide(getActivity().getSupportFragmentManager().findFragmentByTag("Home")).commit();
-        } else {
-            fragmentTransaction.show(getActivity().getSupportFragmentManager().findFragmentByTag("Library"));
-            if (getActivity().getSupportFragmentManager().findFragmentByTag("Home") != null)
-                fragmentTransaction.hide(getActivity().getSupportFragmentManager().findFragmentByTag("Home"));
-            fragmentTransaction.commit();
+
+        switch (v.getId()) {
+
+            case R.id.text_recently_added:
+                getActivity().getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_right_in, R.anim.slide_right_out, R.anim.slide_right_in, R.anim.slide_right_out).addToBackStack(null).add(R.id.content_layout_container, new RecentlyAdded()).commit();
+                break;
+            case R.id.text_recently_played:
+                getActivity().getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_right_in, R.anim.slide_right_out, R.anim.slide_right_in, R.anim.slide_right_out).addToBackStack(null).add(R.id.content_layout_container, new RecentlyPlayed()).commit();
+                break;
+            case R.id.add_playlist_button:
+                AddPlayListDialogFragment.create().show(getActivity().getSupportFragmentManager(), "Create Playlist");
+                break;
+            case R.id.text_playlists:
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).add(R.id.content_layout_container, playlistFragment, "Playlist").commit();
+
+                break;
+
+            case R.id.to_library:
+                android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                if (getActivity().getSupportFragmentManager().findFragmentByTag("Library") == null) {
+                    fragmentTransaction.add(R.id.container, new LibraryFragment(), "Library").commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().hide(getActivity().getSupportFragmentManager().findFragmentByTag("Home")).commit();
+                } else {
+                    fragmentTransaction.show(getActivity().getSupportFragmentManager().findFragmentByTag("Library"));
+                    if (getActivity().getSupportFragmentManager().findFragmentByTag("Home") != null)
+                        fragmentTransaction.hide(getActivity().getSupportFragmentManager().findFragmentByTag("Home"));
+                    fragmentTransaction.commit();
+                }
+                PreferencesUtil.saveLastOpenedScreen(getActivity(), 1);
+
+                break;
+            default:
         }
-        PreferencesUtil.saveLastOpenedScreen(getActivity(),1);
+
     }
 
     private  class PlayListChange extends ContentObserver {

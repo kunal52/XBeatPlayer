@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.techweblearn.musicbeat.Fragment.RecentlyAdded"
+    android:orientation="vertical"
+    android:background="?attr/colorPrimary">
+
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_left_chevron" />
+
+        <TextView
+            android:text="@string/recently_added"
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="6"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:focusable="false"
+            android:fontFamily="@font/open_sans_bold"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+
+            android:textColor="?android:textColorPrimary"
+            android:textSize="25sp" />
+
+        <ImageView
+            android:id="@+id/play_all"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_play_circle_outline_24dp" />
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/songs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="?attr/actionBarSize" />
+
+</LinearLayout>

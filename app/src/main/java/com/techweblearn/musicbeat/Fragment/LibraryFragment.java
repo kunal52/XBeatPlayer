@@ -141,32 +141,6 @@ public class LibraryFragment extends Fragment implements BottomNavigationView.On
                 lighter
         };
 
-       /* if(PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("dark_theme",false)) {
-
-
-            states = new int[][]{
-                    new int[]{android.R.attr.state_checked},
-                    new int[]{-android.R.attr.state_checked},
-            };
-
-            colors = new int[]{
-                    Color.parseColor("#ffffff"),
-                    Color.parseColor("#757575")
-            };
-        }
-        else
-        {
-            states = new int[][]{
-                    new int[]{android.R.attr.state_checked},
-                    new int[]{-android.R.attr.state_checked},
-            };
-
-            colors = new int[]{
-                    Color.parseColor("#212121"),
-                    Color.parseColor("#757575")
-            };
-
-        }*/
 
         ColorStateList colorStateList=new ColorStateList(states,colors);
         bottomNavigationView.setItemIconTintList(colorStateList);
