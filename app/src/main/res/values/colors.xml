@@ -55,6 +55,14 @@
     <color name="secondaryTextColorCoolBlue">#3365c7</color>
 
 
+    //WhiteWood
+    <color name="primaryWhiteWood">#f0e0d0</color>
+    <color name="secondaryWhiteWood">#b47870</color>
+    <color name="accentWhiteWood">#b47870</color>
+    <color name="primaryTextColorWhiteWood">#6e2929</color>
+    <color name="secondaryTextColorWhiteWood">#a45c56</color>
+
+
 
 
 

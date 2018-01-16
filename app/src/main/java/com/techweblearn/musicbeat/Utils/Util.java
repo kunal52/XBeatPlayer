@@ -160,6 +160,7 @@ public class Util {
             case 1:return R.style.AppDarkTheme;
             case 2:return R.style.Chocolate;
             case 3:return R.style.CoolBlue;
+            case 4:return R.style.White_Wood;
             default: return R.style.AppTheme;
 
         }

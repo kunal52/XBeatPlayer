@@ -13,11 +13,10 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/White_Wood">
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <action android:name="android.intent.action.MUSIC_PLAYER" />
 
                 <category android:name="android.intent.category.APP_MUSIC" />
@@ -41,6 +40,7 @@
             </intent-filter>
         </service>
         <service android:name=".network.services.ArtistInfoServices" />
+        <service android:name=".network.services.LyricsFetcherService" />
 
 
         <!--
