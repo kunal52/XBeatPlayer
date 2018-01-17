@@ -35,7 +35,7 @@ public class DrawerLayout extends RecyclerView.Adapter<DrawerLayout.ViewHolder> 
         item_name[0]="Home";
         item_name[1]="Library";
         item_name[2]="Setting";
-        item_name[3]="About";
+        item_name[3] = "Feedback";
 
         int color=Util.getThemeAccentColor(context);
 
@@ -66,7 +66,7 @@ public class DrawerLayout extends RecyclerView.Adapter<DrawerLayout.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 4;
     }
 
     public void setOnItemClicked(OnCallBack callBack)

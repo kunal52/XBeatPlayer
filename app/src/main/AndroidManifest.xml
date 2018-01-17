@@ -24,12 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".IntroActivity"
+        <activity
+            android:name=".IntroActivity"
             android:label="Intro" />
-        <activity android:name=".SettingActivity"
+        <activity
+            android:name=".SettingActivity"
             android:label="@string/action_settings"
-            android:theme="@style/SettingsTheme"/>
+            android:theme="@style/SettingsTheme" />
+
         <service
             android:name=".Service.MusicPlayBackService"
             android:enabled="true"
@@ -41,7 +43,6 @@
         </service>
         <service android:name=".network.services.ArtistInfoServices" />
         <service android:name=".network.services.LyricsFetcherService" />
-
 
         <!--
              MediaSession, prior to API 21, uses a broadcast receiver to communicate with a
@@ -57,14 +58,15 @@
             </intent-filter>
         </receiver>
 
-       <!-- Use For Alarm Manager-->
+        <!-- Use For Alarm Manager -->
 
-        <receiver android:name=".Service.MusicPlayBackService$SleepTimer"/>
+        <receiver android:name=".Service.MusicPlayBackService$SleepTimer" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
+        <activity android:name=".FeedBackActivity"></activity>
     </application>
 
 </manifest>

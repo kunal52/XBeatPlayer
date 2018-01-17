@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "533821781686-9dsrrffdv2m7t8jha1vpeiflbt092g9r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techweblearn.musicbeat",
+            "certificate_hash": "fad7f7cf2cf45a84d18245790464208f825dbed0"
+          }
+        },
+        {
           "client_id": "533821781686-2tuj3eklrluip4f8ahhf33opou6ldujo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

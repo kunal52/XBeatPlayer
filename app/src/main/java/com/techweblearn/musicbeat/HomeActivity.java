@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -221,12 +220,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 PreferencesUtil.saveLastOpenedScreen(this,1);
                 break;
             case 2:
+                overridePendingTransition(R.anim.slide_right_in, R.anim.slide_up_out);
                 startActivityForResult(new Intent(this, SettingActivity.class), 20);
                 break;
             case 3:
+                // overridePendingTransition(R.anim.slide_right_in,R.anim.slide_right_out);
+                startActivity(new Intent(this, FeedBackActivity.class));
                 break;
             case 4:
-                Toast.makeText(getApplicationContext(), "Work in Progress..", Toast.LENGTH_SHORT).show();
+
                 break;
         }
 
