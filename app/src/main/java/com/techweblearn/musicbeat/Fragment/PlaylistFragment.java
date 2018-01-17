@@ -100,6 +100,7 @@ public class PlaylistFragment extends Fragment implements PlaylistHorizontalRecy
         mediaBrowserAdapter.onStop();
     }
 
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -129,7 +130,6 @@ public class PlaylistFragment extends Fragment implements PlaylistHorizontalRecy
             int id = getArguments().getInt("playlist_id");
             int position = getArguments().getInt("position");
             selected_playlistid = id;
-            playlistRecyclerView.scrollToPosition(position);
             onItemClicked(position, id);
         }
 

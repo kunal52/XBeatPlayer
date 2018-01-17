@@ -1,7 +1,6 @@
 package com.techweblearn.musicbeat.Fragment;
 
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Process;
@@ -16,31 +15,24 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.techweblearn.musicbeat.Adapters.QueueSongAdapter;
 import com.techweblearn.musicbeat.Glide.audiocover.AudioCover.AudioFileCover;
 import com.techweblearn.musicbeat.Glide.audiocover.GlideApp;
 import com.techweblearn.musicbeat.Helper.OnStartDragListener;
 import com.techweblearn.musicbeat.Helper.SimpleItemTouchHelperCallback;
 import com.techweblearn.musicbeat.Loader.PlaylistLoader;
-import com.techweblearn.musicbeat.Loader.SongLoader;
 import com.techweblearn.musicbeat.Models.Playlist;
-import com.techweblearn.musicbeat.Models.Song;
 import com.techweblearn.musicbeat.R;
 import com.techweblearn.musicbeat.Service.MediaBrowserAdapter;
 import com.techweblearn.musicbeat.Utils.Extras;
-import com.techweblearn.musicbeat.Utils.ImageCache;
 import com.techweblearn.musicbeat.Utils.PlaylistsUtil;
-import com.techweblearn.musicbeat.Utils.Util;
 import com.techweblearn.musicbeat.provider.MediaItems;
 
 import java.util.ArrayList;
