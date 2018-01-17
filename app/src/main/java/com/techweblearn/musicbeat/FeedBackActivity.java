@@ -81,8 +81,6 @@ public class FeedBackActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "Check Your Field ", Toast.LENGTH_SHORT).show();
 
         }
-
-
     }
 
     public boolean isValidate() {
