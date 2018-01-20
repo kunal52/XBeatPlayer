@@ -6,7 +6,7 @@ android {
         applicationId "com.techweblearn.musicbeat"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 13
+        versionCode 14
         versionName '1.1.0'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

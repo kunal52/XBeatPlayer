@@ -81,6 +81,7 @@ public class FeedBackActivity extends AppCompatActivity implements View.OnClickL
                         public void onSuccess(Void aVoid) {
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "Thanks For Feedback", Toast.LENGTH_SHORT).show();
+                            onBackPressed();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

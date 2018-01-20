@@ -112,10 +112,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         sleepIcon.setColorFilter(Util.getThemeAccentColor(this), PorterDuff.Mode.SRC_ATOP);
         sleepText.setText("Sleep Timer");
 
-        startService(new Intent(this, ArtistInfoServices.class));
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("download_artist_art", true))
+            startService(new Intent(this, ArtistInfoServices.class));
 
         if (savedInstanceState == null) //Check if App Start then add the Fragment Otherwise Not
+        {
             addFragment();
+        }
     }
 
     @Override
@@ -220,8 +223,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 PreferencesUtil.saveLastOpenedScreen(this,1);
                 break;
             case 2:
-                overridePendingTransition(R.anim.slide_right_in, R.anim.slide_up_out);
+                //overridePendingTransition(R.anim.slide_up_in, R.anim.slide_up_out);
                 startActivityForResult(new Intent(this, SettingActivity.class), 20);
+                //slidingRootNav.closeMenu(false);
                 break;
             case 3:
                 // overridePendingTransition(R.anim.slide_right_in,R.anim.slide_right_out);

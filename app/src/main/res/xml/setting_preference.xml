@@ -22,6 +22,17 @@
             android:title="Pause Music on Call" />
 
     </PreferenceCategory>
+
+    <PreferenceCategory android:title="Network">
+
+        <SwitchPreference
+            android:title="Download Artist Art"
+            android:defaultValue="true"
+            android:summary="Fetches the Artist Image and Info From Internet"
+            android:key="download_artist_art" />
+
+    </PreferenceCategory>
+
     <PreferenceCategory
         android:summary="Changes The Look And Feel Of Your App"
         android:title="Appearance">

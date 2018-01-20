@@ -6,13 +6,13 @@
     "apkInfo": {
       "type": "MAIN",
       "splits": [],
-      "versionCode": 13
+      "versionCode": 14
     },
     "path": "app-release.apk",
     "properties": {
       "packageId": "com.techweblearn.musicbeat",
       "split": "",
-      "minSdkVersion": "19"
+      "minSdkVersion": "21"
     }
   }
 ]
