@@ -1,13 +1,10 @@
 package com.techweblearn.musicbeat;
 
-import android.app.LoaderManager;
 import android.content.Context;
-import android.content.Loader;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -19,8 +16,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import com.techweblearn.musicbeat.Adapters.SearchAdapter;
 import com.techweblearn.musicbeat.Dialogs.SongDetailDialog;
@@ -53,13 +50,16 @@ import static com.techweblearn.musicbeat.Fragment.SongFragment.ADD_NEW_PLAYLIST_
 import static com.techweblearn.musicbeat.Utils.Constants.PLAY_NEXT;
 import static com.techweblearn.musicbeat.Utils.Constants.PLAY_SINGLE_SONG;
 
-public class SearchActivity extends Fragment implements TextWatcher, android.support.v4.app.LoaderManager.LoaderCallbacks<List<Object>>, SearchAdapter.CallBack {
+public class SearchActivity extends Fragment implements TextWatcher, android.support.v4.app.LoaderManager.LoaderCallbacks<List<Object>>, SearchAdapter.CallBack, View.OnClickListener {
 
     private static final int LOADER_ID = 3;
     @BindView(R.id.search_edittext)
     EditText search_text;
     @BindView(R.id.search_recyclerview)
     RecyclerView recyclerView;
+    @BindView(R.id.clear)
+    ImageView clear;
+
     String query;
     MediaBrowserAdapter mediaBrowserAdapter;
     private SearchAdapter searchAdapter;
@@ -89,6 +89,8 @@ public class SearchActivity extends Fragment implements TextWatcher, android.sup
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         search_text.addTextChangedListener(this);
+        clear.setOnClickListener(this);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(searchAdapter);
         recyclerView.setOnTouchListener(new View.OnTouchListener() {
@@ -295,6 +297,14 @@ public class SearchActivity extends Fragment implements TextWatcher, android.sup
             }
         });
         popupMenu.show();
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        search_text.setText("");
+
+
     }
 
 
