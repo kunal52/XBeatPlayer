@@ -22,7 +22,6 @@ import java.util.ArrayList;
 
 import static com.techweblearn.musicbeat.network.LastFmClient.getApiService;
 
-
 /**
  * Created by kunal on 14/1/18.
  */
@@ -58,8 +57,7 @@ public class ArtistInfoServices extends Service {
                         assert lastFmArtist != null;
                         byte[] byteArray = convertImageToByte(lastFmArtist.getArtist().getImage().get(4).getText());
                         networkInfoStore.insertArtistData(artist.getName(), lastFmArtist.getArtist().getBio().getContent(), byteArray);
-
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 
