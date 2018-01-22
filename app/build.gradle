@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.techweblearn.musicbeat"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 17
         versionName '1.1.0'

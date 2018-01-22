@@ -11,8 +11,10 @@
         android:layout_marginRight="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/cardView2">
+        android:id="@+id/cardView2"
+        android:saveEnabled="false">
         <ImageView
+            android:saveEnabled="false"
             android:scaleType="centerCrop"
             android:id="@+id/song_image"
             android:layout_width="40dp"
@@ -20,6 +22,7 @@
     </android.support.v7.widget.CardView>
 
     <TextView
+        android:saveEnabled="false"
         android:paddingEnd="16dp"
         android:id="@+id/song_name"
         android:layout_width="wrap_content"
@@ -33,6 +36,7 @@
         android:textStyle="bold" />
 
     <TextView
+        android:saveEnabled="false"
         android:textColor="?android:textColorSecondary"
         android:paddingEnd="16dp"
         android:id="@+id/artist_name"

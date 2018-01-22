@@ -302,11 +302,13 @@ public class SearchActivity extends Fragment implements TextWatcher, android.sup
     @Override
     public void onClick(View view) {
 
-        search_text.setText("");
+        String s = search_text.getText().toString();
 
+        if (search_text.getText() == null || search_text.getText().toString().equals(""))
+            getActivity().getSupportFragmentManager().popBackStack();
+        else search_text.setText("");
 
     }
-
 
     private static class AsyncSearchResultLoader extends WrappedAsyncTaskLoader<List<Object>> {
         private final String query;
@@ -314,10 +316,12 @@ public class SearchActivity extends Fragment implements TextWatcher, android.sup
         public AsyncSearchResultLoader(Context context, String query) {
             super(context);
             this.query = query;
+
         }
 
         @Override
         public List<Object> loadInBackground() {
+
             List<Object> results = new ArrayList<>();
             if (!TextUtils.isEmpty(query)) {
                 List songs = SongLoader.getSongs(getContext(), query);
@@ -337,6 +341,7 @@ public class SearchActivity extends Fragment implements TextWatcher, android.sup
                     results.add(getContext().getResources().getString(R.string.albums));
                     results.addAll(albums);
                 }
+
             }
             return results;
         }

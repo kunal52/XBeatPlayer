@@ -19,5 +19,19 @@ public class Constants {
     public static final String PLAY_ARTIST="play_artist";
     public static final String PLAY_ALBUM="play_album";
 
+    /*
+   Equalizer
+    */
+    public static final String BAND_LEVEL = "level";
+    public static final String SAVE_PRESET = "preset";
+    public static final int GAIN_MAX = 100;
+    public static final String SAVE_EQ = "Equalizers";
+    public static final String BASS_BOOST = "BassBoost";
+    public static final String VIRTUAL_BOOST = "VirtualBoost";
+    public static final String LOUD_BOOST = "Loud";
+    public static final String PRESET_BOOST = "PresetReverb";
+    public static final String PRESET_POS = "spinner_position";
+    public static final short BASSBOOST_STRENGTH = 1000;
+    public static final short Virtualizer_STRENGTH = 1000;
 
 }

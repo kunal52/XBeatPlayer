@@ -41,7 +41,8 @@ import butterknife.Unbinder;
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener
         , SlidingUpPanelLayout.PanelSlideListener
         , DrawerLayout.OnCallBack
-        , PlayerLayout1.PlayerLayoutCallback {
+        , PlayerLayout1.PlayerLayoutCallback
+        , MiniPlayerLayout.onCallback {
 
     @BindView(R.id.menu_icon) ImageView menu;
     @BindView(R.id.search) ImageView search;
@@ -119,6 +120,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         {
             addFragment();
         }
+
     }
 
     @Override
@@ -248,6 +250,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private void addFragment() {
         PlayerLayout1 playerLayout1 = new PlayerLayout1();
         playerLayout1.setCallback(this);
+        MiniPlayerLayout miniPlayerLayout = new MiniPlayerLayout();
+        miniPlayerLayout.setCallback(this);
 
         switch (Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(this).getString("start_screen","2")))
         {
@@ -265,7 +269,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.mini_player, new MiniPlayerLayout(), "MiniPlayer").commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.mini_player, miniPlayerLayout, "MiniPlayer").commit();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.player_container, playerLayout1, "Player1").commit();
 
@@ -400,6 +404,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         height = displayMetrics.heightPixels;
         width = displayMetrics.widthPixels;
+    }
+
+    @Override
+    public void openPlayerLayout() {
+
+        slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
     }
 }
 
