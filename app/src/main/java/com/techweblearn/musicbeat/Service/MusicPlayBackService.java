@@ -372,6 +372,7 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
         @Override
         public void onPrepare() {
 
+
             if (mQueueIndex < 0 && originalQueue.isEmpty()) {
                 return;
             }
@@ -380,6 +381,7 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
             if (!mSession.isActive()) {
                 mSession.setActive(true);
             }
+            Extras.saveCurrentSongIndex(getApplicationContext(), mQueueIndex);
             updateMetaData(mPreparedMedia);
         }
 
@@ -400,7 +402,7 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
             if (mPreparedMedia == null) {
                 onPrepare();
             }
-            Extras.saveCurrentSongIndex(getApplicationContext(), mQueueIndex);
+
             mPlayback.play();
 
         }
