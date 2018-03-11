@@ -25,6 +25,7 @@ import com.techweblearn.musicbeat.Fragment.HomeFragment;
 import com.techweblearn.musicbeat.Fragment.LibraryFragment;
 import com.techweblearn.musicbeat.Fragment.MiniPlayerLayout;
 import com.techweblearn.musicbeat.Fragment.PlayerLayout1;
+import com.techweblearn.musicbeat.Fragment.PlayerLayout2;
 import com.techweblearn.musicbeat.Fragment.QueueSongFragment;
 import com.techweblearn.musicbeat.Utils.PreferencesUtil;
 import com.techweblearn.musicbeat.Utils.Util;
@@ -248,10 +249,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addFragment() {
-        PlayerLayout1 playerLayout1 = new PlayerLayout1();
+        PlayerLayout2 playerLayout1 = new PlayerLayout2();
         playerLayout1.setCallback(this);
         MiniPlayerLayout miniPlayerLayout = new MiniPlayerLayout();
-        miniPlayerLayout.setCallback(this);
+        miniPlayerLayout.setCallback((MiniPlayerLayout.onCallback) this);
 
         switch (Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(this).getString("start_screen","2")))
         {
@@ -286,7 +287,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             getSupportFragmentManager().beginTransaction().add(R.id.container, new HomeFragment(), "Home").commit();
         }
         if (relaodPlayerLayout) {
-            PlayerLayout1 playerLayout1 = new PlayerLayout1();
+            PlayerLayout2 playerLayout1 = new PlayerLayout2();
             playerLayout1.setCallback(this);
             relaodPlayerLayout = false;
             getSupportFragmentManager().beginTransaction().replace(R.id.player_container, playerLayout1).commit();

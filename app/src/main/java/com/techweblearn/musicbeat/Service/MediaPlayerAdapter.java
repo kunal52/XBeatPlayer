@@ -37,6 +37,7 @@ public final class MediaPlayerAdapter extends PlayerAdapter {
     private boolean mCurrentMediaPlayedToCompletion;
     private int currentPosition=0;
     private boolean isFirstSongOFStartApp=true; // First Song play When Start the App
+    MediaBrowserAdapter mediaBrowserAdapter;
 
     private int mSeekWhileNotPlaying = -1;
 
@@ -55,6 +56,12 @@ public final class MediaPlayerAdapter extends PlayerAdapter {
      * not the constructor.
      */
     private void initializeMediaPlayer() {
+
+        if(mediaBrowserAdapter==null)
+        {
+            mediaBrowserAdapter=new MediaBrowserAdapter(mContext);
+            mediaBrowserAdapter.onStart();
+        }
         if (mMediaPlayer == null) {
             mMediaPlayer = new MediaPlayer();
             mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -62,12 +69,7 @@ public final class MediaPlayerAdapter extends PlayerAdapter {
                 public void onCompletion(MediaPlayer mediaPlayer) {
                     mPlaybackInfoListener.onPlaybackCompleted();
 
-                    // Set the state to "paused" because it most closely matches the state
-                    // in MediaPlayer with regards to available state transitions compared
-                    // to "stop".
-                    // Paused allows: seekTo(), start(), pause(), stop()
-                    // Stop allows: stop()
-                   // setNewState(PlaybackStateCompat.STATE_PAUSED);
+
                 }
             });
         }

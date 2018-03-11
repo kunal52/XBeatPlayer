@@ -17,6 +17,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.techweblearn.musicbeat.Fragment.PlayerLayout1;
 import com.techweblearn.musicbeat.Service.MediaBrowserAdapter;
 import com.techweblearn.musicbeat.Utils.Extras;
 import com.techweblearn.musicbeat.Utils.Util;
@@ -50,6 +51,8 @@ public abstract class PlayerLayoutBase extends Fragment implements SeekBar.OnSee
     MediaSeekBar mediaSeekBar;
     int maxProgress=0;
     TextView currentTimer;
+
+    PlayerLayout1.PlayerLayoutCallback playerLayoutCallback;
     boolean isSongPlayCountIsUpdated=false; // IF This Update Then We Not Need To Update Anymore when Their Progress IS Running
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -98,6 +101,11 @@ public abstract class PlayerLayoutBase extends Fragment implements SeekBar.OnSee
         mediaBrowserAdapter.getTransportControls().setRepeatMode(repeatMode);
     }
 
+
+    public void changeSlideUp()
+    {
+        playerLayoutCallback.changeSidingUpPanel();
+    }
 
 
     public void setToFavourite(MediaMetadataCompat metadataCompat)
@@ -311,4 +319,16 @@ public abstract class PlayerLayoutBase extends Fragment implements SeekBar.OnSee
         if(mediaSeekBar!=null)
         mediaSeekBar.disconnectController();
     }
+
+
+    public void setCallback(PlayerLayout1.PlayerLayoutCallback playerLayoutCallback) {
+        this.playerLayoutCallback = playerLayoutCallback;
+    }
+
+    public interface PlayerLayoutCallback {
+        void changeSidingUpPanel();
+    }
+
+
+
 }

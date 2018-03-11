@@ -20,6 +20,7 @@ import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -32,8 +33,10 @@ import com.techweblearn.musicbeat.Loader.SongLoader;
 import com.techweblearn.musicbeat.Models.Playlist;
 import com.techweblearn.musicbeat.Models.Song;
 import com.techweblearn.musicbeat.Notification.MediaNotificationManager;
+import com.techweblearn.musicbeat.R;
 import com.techweblearn.musicbeat.Utils.Extras;
 import com.techweblearn.musicbeat.Utils.PreferencesUtil;
+import com.techweblearn.musicbeat.Widgets.AppWidgetSmall;
 import com.techweblearn.musicbeat.provider.MediaItems;
 import com.techweblearn.musicbeat.provider.MusicPlaybackQueueStore;
 
@@ -68,7 +71,7 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
     private PlayerAdapter mPlayback;
     private MediaNotificationManager mMediaNotificationManager;
     private MediaSessionCallback mCallback;
-    private boolean mServiceInStartedState;
+    public static boolean mServiceInStartedState=false;
     private int mQueueIndex = -1;
     private List<MediaSessionCompat.QueueItem> playingQueue = new ArrayList<>();
     private List<MediaSessionCompat.QueueItem> originalQueue = new ArrayList<>();
@@ -102,6 +105,10 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
 
         mPlayback = new MediaPlayerAdapter(this, new MediaPlayerListener());
         mPlayback.seekTo(PreferencesUtil.getCurrentPosition(getApplicationContext()));
+
+
+        AppWidgetSmall appWidgetSmall=AppWidgetSmall.getInstance();
+        appWidgetSmall.linkButtons(getApplicationContext(),new RemoteViews(getPackageName(), R.layout.app_widget_small));
         Log.d(TAG, "onCreate: MusicService creating MediaSession, and MediaNotificationManager");
     }
 
@@ -115,14 +122,58 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+       if(intent!=null)
+       {
+           String s=intent.getAction();
+           if(s!=null) {
+               switch (s) {
+                   case "PLAY_PAUSE":
+                       if (mSession.getController().getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING) {
+                           mPlayback.pause();
+                       } else mPlayback.play();
+               }
+
+
+           }
+
+           if (mSession.getController().getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING) {
+               mPlayback.pause();
+           } else mPlayback.play();
+
+       }
+
+      //  mPlayback.onPlay();
+
+
+
+
+
+//        String action = intent.getAction();
+        /*switch (action) {
+            case "PLAY":
+                break;
+            case "PAUSE":
+                break;
+
+            case "PREV":
+                break;
+
+            case "NEXT":
+                break;
+
+            default:
+
+
+        }*/
         return START_STICKY;
     }
-
     @Override
     public void onDestroy() {
         mMediaNotificationManager.onDestroy();
         mPlayback.stop();
         mSession.release();
+       // AppWidgetSmall appWidgetSmall=AppWidgetSmall.getInstance();
+      //  appWidgetSmall.unlinkButtons(getApplicationContext());
         if (wakeLock.isHeld())
             wakeLock.release();
         Log.d(TAG, "onDestroy: MediaPlayerAdapter stopped, and MediaSession released");
@@ -201,9 +252,7 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
             mSession.setQueue(originalQueue);
             MusicPlaybackQueueStore.SaveOriginalQueueAsyncTask saveOriginalQueueAsyncTask = musicPlaybackQueueStore.new SaveOriginalQueueAsyncTask(getApplicationContext());
             saveOriginalQueueAsyncTask.execute(originalQueue);
-
         }
-
 
         public void onRemoveQueueItem(int index) {
             originalQueue.remove(index);
@@ -419,8 +468,8 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
 
         @Override
         public void onStop() {
-            mPlayback.stop();
-            mSession.setActive(false);
+           mPlayback.stop();
+           mSession.setActive(false);
         }
 
         @Override
@@ -609,6 +658,9 @@ public class MusicPlayBackService extends MediaBrowserServiceCompat {
             }
         }
     }
+
+
+
 
 
 }

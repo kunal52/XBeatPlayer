@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.techweblearn.musicbeat.Adapters.SongCoverPagerAdapter;
+import com.techweblearn.musicbeat.Adapters.SongCoverPagerAdapterCircular;
 import com.techweblearn.musicbeat.Adapters.SongCoverPagerQueueAdapter;
 import com.techweblearn.musicbeat.Base.PlayerLayoutBase;
 import com.techweblearn.musicbeat.Dialogs.SongDetailDialog;
@@ -92,9 +93,8 @@ public class PlayerLayout1 extends PlayerLayoutBase implements View.OnClickListe
     Unbinder unbinder;
     ArrayList<MediaBrowserCompat.MediaItem> mediaItemArrayList;
     ArrayList<MediaSessionCompat.QueueItem> queueItemArrayList;
-    SongCoverPagerAdapter songCoverPagerAdapter;
+    SongCoverPagerAdapterCircular songCoverPagerAdapter;
     String currently_playing_mediaid;
-    PlayerLayoutCallback playerLayoutCallback;
 
     public PlayerLayout1() {
 
@@ -130,7 +130,7 @@ public class PlayerLayout1 extends PlayerLayoutBase implements View.OnClickListe
         play_pause_drawable = new PlayPauseDrawableDark(getActivity());
         play_pause.setImageDrawable(play_pause_drawable);
         setViewPagerTransformation();
-        songCoverPagerAdapter = new SongCoverPagerAdapter(getFragmentManager(), null);
+        songCoverPagerAdapter = new SongCoverPagerAdapterCircular(getFragmentManager(), null);
 
         try {
             Field mScroller;
@@ -184,8 +184,6 @@ public class PlayerLayout1 extends PlayerLayoutBase implements View.OnClickListe
     public void onQueueLoaded(@NonNull String parentId, @NonNull List<MediaBrowserCompat.MediaItem> children) {
 
         try {
-
-
             viewPager.setAdapter(new SongCoverPagerAdapter(getFragmentManager(), children));
             viewPager.setCurrentItem(Extras.getCurrentSongIndex(getActivity()));
             mediaItemArrayList = new ArrayList<>(children);
@@ -275,7 +273,7 @@ public class PlayerLayout1 extends PlayerLayoutBase implements View.OnClickListe
                         break;
                     case R.id.go_to_artist:
 
-                        playerLayoutCallback.changeSidingUpPanel();
+                        changeSlideUp();
                         Bundle extra = new Bundle();
                         extra.putString("artist_name", getCurrentSong(currently_playing_mediaid).artistName);
                         extra.putInt("artist_id", getCurrentSong(currently_playing_mediaid).artistId);
@@ -294,7 +292,7 @@ public class PlayerLayout1 extends PlayerLayoutBase implements View.OnClickListe
 
                     case R.id.go_to_album:
 
-                        playerLayoutCallback.changeSidingUpPanel();
+                        changeSlideUp();
                         Bundle extra1 = new Bundle();
                         extra1.putInt("album_id", getCurrentSong(currently_playing_mediaid).albumId);
                         AlbumFragmentFullView fragmentFullView = new AlbumFragmentFullView();
@@ -447,11 +445,4 @@ public class PlayerLayout1 extends PlayerLayoutBase implements View.OnClickListe
         }
     }
 
-    public void setCallback(PlayerLayoutCallback playerLayoutCallback) {
-        this.playerLayoutCallback = playerLayoutCallback;
-    }
-
-    public interface PlayerLayoutCallback {
-        void changeSidingUpPanel();
-    }
 }

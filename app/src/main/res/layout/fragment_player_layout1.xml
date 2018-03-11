@@ -8,6 +8,21 @@
     tools:context="com.techweblearn.musicbeat.Fragment.PlayerLayout1">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+
+        <TextView
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:text="Now Playing"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+
         <android.support.v4.view.ViewPager
 
             android:id="@+id/songs_viewpager"

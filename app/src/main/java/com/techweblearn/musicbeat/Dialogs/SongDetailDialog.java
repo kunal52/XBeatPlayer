@@ -61,7 +61,6 @@ public class SongDetailDialog extends DialogFragment implements View.OnClickList
         return fileSizeInMB + " MB";
     }
 
-
     @BindView(R.id.file_name)TextView fileName;
     @BindView(R.id.file_path)TextView filePath;
     @BindView(R.id.file_size)TextView fileSize;

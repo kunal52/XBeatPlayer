@@ -6,7 +6,7 @@ android {
         applicationId "com.techweblearn.musicbeat"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 18
+        versionCode 19
         versionName '1.1.1'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -37,13 +37,17 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:11.0.4'
     implementation 'com.google.firebase:firebase-database:11.0.4'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
+
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
     compile 'com.yarolegovich:sliding-root-nav:1.1.0'
     compile 'com.sothree.slidinguppanel:library:3.4.0'
     compile 'com.jakewharton:butterknife:8.8.1'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.github.apl-devs:appintro:v4.2.2'
-    compile 'jp.wasabeef:blurry:2.1.1'
+  //  compile 'com.github.florent37:glidepalette:2.1.1'
+
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

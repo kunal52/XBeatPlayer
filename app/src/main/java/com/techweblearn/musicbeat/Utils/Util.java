@@ -2,6 +2,7 @@ package com.techweblearn.musicbeat.Utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -147,6 +148,24 @@ public class Util {
     public static Drawable getArtistDrawable(Context context)
     {
         Drawable drawable= context.getResources().getDrawable(R.drawable.ic_artist_black);
+        drawable.setColorFilter(getThemeAccentColor(context), PorterDuff.Mode.SRC_ATOP);
+        return drawable;
+    }
+
+
+
+    public static Drawable getPrevDrawable(Context context)
+    {
+        Drawable drawable= context.getResources().getDrawable(R.drawable.ic_previous_track);
+        drawable.setColorFilter(getThemeAccentColor(context), PorterDuff.Mode.SRC_ATOP);
+        return drawable;
+    }
+
+
+
+    public static Drawable getNextDrawable(Context context)
+    {
+        Drawable drawable= context.getApplicationContext().getDrawable(R.drawable.ic_next_track_button);
         drawable.setColorFilter(getThemeAccentColor(context), PorterDuff.Mode.SRC_ATOP);
         return drawable;
     }
